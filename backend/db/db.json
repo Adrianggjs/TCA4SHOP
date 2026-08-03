@@ -1,0 +1,49 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "AirPods Pro 2 (Premium)",
+      "price": 1299,
+      "currency": "Q",
+      "image": "assets/img/airpods_pro2.png",
+      "description": "Cancelación activa de ruido superior, modo ambiente adaptativo y audio espacial personalizado.",
+      "stock": 15
+    },
+    {
+      "id": "2",
+      "name": "AirPods Pro 3 (Ultra)",
+      "price": 1499,
+      "currency": "Q",
+      "image": "assets/img/airpods_pro3.png",
+      "description": "La evolución del sonido premium con mayor duración de batería y estuche inteligente.",
+      "stock": 8
+    },
+    {
+      "id": "3",
+      "name": "HK 10 Ultra 3 Smartwatch",
+      "price": 899,
+      "currency": "Q",
+      "image": "assets/img/hk_10_ultra_3.png",
+      "description": "Pantalla AMOLED de alta definición, monitoreo de salud completo y diseño ultra deportivo.",
+      "stock": 12
+    }
+  ],
+  "reviews": [
+    {
+      "id": "1",
+      "user": "Carlos M.",
+      "rating": 5,
+      "comment": "Los AirPods Pro 2 tienen una cancelación de ruido increíble, valen totalmente la pena.",
+      "date": "2026-07-28"
+    },
+    {
+      "id": "2",
+      "user": "Sofía G.",
+      "rating": 5,
+      "comment": "El smartwatch HK 10 Ultra se ve sumamente premium y la batería dura muchisimo.",
+      "date": "2026-07-30"
+    }
+  ],
+  "wholesale_requests": [],
+  "contacts": []
+}

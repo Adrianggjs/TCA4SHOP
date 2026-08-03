@@ -1,0 +1,21 @@
+# OS Metadata
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# Temp
+*.tmp
+*.log
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Database / Backend env
+.env
+*.db
+*.db-journal
