@@ -12,7 +12,7 @@
   <meta property="og:url" content="https://adrianggjs.github.io/TCA4SHOP/productos.html">
   <meta property="og:title" content="Catálogo de Productos | TCA4SHOP">
   <meta property="og:description" content="AirPods Pro 2, AirPods Pro 3 y smartwatches premium en Guatemala. Originales garantizados.">
-  <meta property="og:image" content="https://adrianggjs.github.io/TCA4SHOP/assets/img/airpods_pro2.png">
+  <meta property="og:image" content="https://adrianggjs.github.io/TCA4SHOP/assets/img/airpods_pro2.webp">
   <meta name="theme-color" content="#295544">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23295544'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Montserrat,sans-serif' font-weight='800' font-size='11' fill='white'%3ETCA4%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -103,7 +103,7 @@
           <div class="product-badge accent">NUEVO</div>
           <div class="stock-badge in-stock">✓ En stock</div>
           <div class="product-img-wrap">
-            <img src="assets/img/airpods_pro3.png?v=3" alt="AirPods Pro 3" class="product-img" loading="lazy">
+            <img src="assets/img/airpods_pro3.webp?v=3" alt="AirPods Pro 3" class="product-img" loading="lazy">
           </div>
           <div class="product-info" style="text-align: center; padding: 1.5rem;">
             <h3 class="product-title" style="margin-bottom: 0.25rem; font-size: 1.5rem;">AirPods Pro 3</h3>
@@ -118,7 +118,7 @@
           <div class="product-badge">MÁS VENDIDO</div>
           <div class="stock-badge in-stock">✓ En stock</div>
           <div class="product-img-wrap">
-            <img src="assets/img/airpods_pro2.png" alt="AirPods Pro 2" class="product-img" loading="lazy">
+            <img src="assets/img/airpods_pro2.webp" alt="AirPods Pro 2" class="product-img" loading="lazy">
           </div>
           <div class="product-info" style="text-align: center; padding: 1.5rem;">
             <h3 class="product-title" style="margin-bottom: 0.25rem; font-size: 1.5rem;">AirPods Pro 2</h3>
@@ -133,7 +133,7 @@
           <div class="product-badge accent">NUEVO</div>
           <div class="stock-badge low-stock">⚠️ Últimas unidades</div>
           <div class="product-img-wrap">
-            <img src="assets/img/hk_10_ultra_3.png" alt="HK10 Ultra 3" class="product-img" loading="lazy">
+            <img src="assets/img/hk_10_ultra_3.webp" alt="HK10 Ultra 3" class="product-img" loading="lazy">
           </div>
           <div class="product-info" style="text-align: center; padding: 1.5rem;">
             <h3 class="product-title" style="margin-bottom: 0.25rem; font-size: 1.5rem;">HK10 Ultra 3</h3>
@@ -251,7 +251,11 @@
           </div>
           <div class="form-row qty-row">
             <label>Cantidad:</label>
-            <input type="number" id="order-qty" value="1" min="1" required>
+            <div class="qty-selector">
+              <button type="button" class="qty-btn qty-minus">-</button>
+              <input type="number" id="order-qty" value="1" min="1" required>
+              <button type="button" class="qty-btn qty-plus">+</button>
+            </div>
           </div>
           <input type="hidden" id="order-product-id">
           

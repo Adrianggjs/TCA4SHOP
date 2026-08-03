@@ -673,9 +673,9 @@ document.addEventListener('DOMContentLoaded', () => {
       evolution: "Esta nueva generación incorpora un chip más potente que analiza el entorno 48,000 veces por segundo para bloquear el ruido de forma inteligente, manteniendo una fidelidad acústica superior a cualquier versión anterior.",
       price: 599,
       images: [
-        "assets/img/pro3_1.png",
-        "assets/img/pro3_2.png",
-        "assets/img/pro3_3.png"
+        "assets/img/pro3_1.webp",
+        "assets/img/pro3_2.webp",
+        "assets/img/pro3_3.webp"
       ],
       video: "assets/img/pro3_video.mp4",
       features: [
@@ -699,9 +699,9 @@ document.addEventListener('DOMContentLoaded', () => {
       evolution: "El estándar de oro en audio inalámbrico que redefinió la cancelación de ruido. Con su chip H2, ofrece una experiencia inmersiva que se adapta dinámicamente a la forma de tu oído.",
       price: 399,
       images: [
-        "assets/img/pro2_1.png",
-        "assets/img/pro2_2.png",
-        "assets/img/pro2_3.png"
+        "assets/img/pro2_1.webp",
+        "assets/img/pro2_2.webp",
+        "assets/img/pro2_3.webp"
       ],
       video: "assets/img/pro2_video.mp4",
       features: [
@@ -725,9 +725,9 @@ document.addEventListener('DOMContentLoaded', () => {
       evolution: "Diseñado para superar los límites. Con una batería que rinde días enteros y sensores biométricos de precisión quirúrgica, es el compañero perfecto para la aventura y la ciudad.",
       price: 499,
       images: [
-        "assets/img/hk10_1.png",
-        "assets/img/hk10_2.png",
-        "assets/img/hk10_3.png"
+        "assets/img/hk10_1.webp",
+        "assets/img/hk10_2.webp",
+        "assets/img/hk10_3.webp"
       ],
       video: "assets/img/hk10_video.mp4",
       features: [
@@ -1301,4 +1301,29 @@ document.addEventListener('DOMContentLoaded', () => {
     if(privacyOverlay) privacyOverlay.addEventListener('click', closePrivacy);
   }
 
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  // --- Qty Selector ---
+  const orderForms = document.querySelectorAll('.product-order-form');
+  orderForms.forEach(form => {
+    const qtyInput = form.querySelector('#order-qty');
+    const btnMinus = form.querySelector('.qty-minus');
+    const btnPlus = form.querySelector('.qty-plus');
+    
+    if (qtyInput && btnMinus && btnPlus) {
+      btnMinus.addEventListener('click', () => {
+        let val = parseInt(qtyInput.value) || 1;
+        if (val > 1) {
+          qtyInput.value = val - 1;
+          qtyInput.dispatchEvent(new Event('input'));
+        }
+      });
+      btnPlus.addEventListener('click', () => {
+        let val = parseInt(qtyInput.value) || 1;
+        qtyInput.value = val + 1;
+        qtyInput.dispatchEvent(new Event('input'));
+      });
+    }
+  });
 });
