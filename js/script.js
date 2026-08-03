@@ -610,39 +610,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const pctLabel5 = document.getElementById('bar-pct-5');
     if (bar5 && pctLabel5) { bar5.style.width = `${pct5}%`; pctLabel5.textContent = `${pct5}%`; }
     
-    const bar4 = document.getElementById('bar-fill-4');
-    const pctLabel4 = document.getElementById('bar-pct-4');
-    if (bar4 && pctLabel4) { bar4.style.width = `${pct4}%`; pctLabel4.textContent = `${pct4}%`; }
-    
-    const bar3 = document.getElementById('bar-fill-3');
-    const pctLabel3 = document.getElementById('bar-pct-3');
-    if (bar3 && pctLabel3) { bar3.style.width = `${pct3}%`; pctLabel3.textContent = `${pct3}%`; }
-  }
-  
-  // Cargar reseñas al inicio
-  renderReviews();
-  updateReviewsSummary();
-
-
-  // ==========================================
-  // 11. PORTAL DE MAYORISTAS (CONTRASEÑA Y ACCESO)
-  // ==========================================
-  
-  const WHOLESALE_PASSWORD = "TCA4MAYORISTA";
-  
-  const wLink = document.getElementById('wholesaler-link');
-  const wFooterLink = document.getElementById('wholesaler-footer-link');
-  const wModalOverlay = document.getElementById('wholesale-modal-overlay');
-  const wModal = document.getElementById('wholesale-modal');
-  const wModalCloseBtn = document.getElementById('wholesale-modal-close-btn');
-  const wAuthForm = document.getElementById('wholesale-auth-form');
-  const wPasswordInput = document.getElementById('wholesale-password');
-  const wErrorMsg = document.getElementById('wholesale-error-msg');
-  const wPortalSection = document.getElementById('wholesale-portal-section');
-  const wWaOrderBtn = document.getElementById('wholesale-wa-order');
-  
-  function openWholesaleModal(e) {
-    if (e) e.preventDefault();
     if (wModal) wModal.classList.add('open');
     if (wModalOverlay) wModalOverlay.classList.add('active');
     if (wPasswordInput) wPasswordInput.value = '';
@@ -663,7 +630,8 @@ document.addEventListener('DOMContentLoaded', () => {
     wAuthForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const enteredPass = wPasswordInput.value;
-      if (enteredPass === WHOLESALE_PASSWORD) {
+      // Obfuscated check
+      if (btoa(enteredPass.toUpperCase()) === WHOLESALE_PASSWORD_B64) {
         closeWholesaleModal();
         if (wPortalSection) {
           wPortalSection.style.display = 'block';
@@ -840,6 +808,31 @@ document.addEventListener('DOMContentLoaded', () => {
     
     renderModalReviews();
     
+    // Setup real-time price update
+    const qtyInput = document.getElementById('order-qty');
+    const orderFormContainer = document.getElementById('product-order-form');
+    let orderTotalDisplay = document.getElementById('real-time-total');
+    if(!orderTotalDisplay) {
+      const displayHtml = `
+        <div id="real-time-total" class="order-total-display">
+          <span class="total-label">Total estimado:</span>
+          <span class="total-value">Q${product.price.toLocaleString()}</span>
+        </div>
+      `;
+      const submitBtn = orderFormContainer.querySelector('button[type="submit"]');
+      submitBtn.insertAdjacentHTML('beforebegin', displayHtml);
+      orderTotalDisplay = document.getElementById('real-time-total');
+    } else {
+      orderTotalDisplay.querySelector('.total-value').textContent = `Q${product.price.toLocaleString()}`;
+    }
+    
+    const updateRealTimePrice = () => {
+      const qty = parseInt(qtyInput.value) || 1;
+      orderTotalDisplay.querySelector('.total-value').textContent = `Q${(product.price * qty).toLocaleString()}`;
+    };
+    qtyInput.removeEventListener('input', updateRealTimePrice);
+    qtyInput.addEventListener('input', updateRealTimePrice);
+    
     if (productModal) productModal.classList.add('open');
     if (productModalOverlay) productModalOverlay.classList.add('active');
   }
@@ -866,6 +859,20 @@ document.addEventListener('DOMContentLoaded', () => {
   if (orderForm) {
     orderForm.addEventListener('submit', (e) => {
       e.preventDefault();
+      
+      // Basic validation visual feedback
+      const requiredInputs = orderForm.querySelectorAll('input[required], select[required]');
+      let isValid = true;
+      requiredInputs.forEach(input => {
+        if(!input.value.trim()) {
+          input.classList.add('input-error');
+          isValid = false;
+          setTimeout(() => input.classList.remove('input-error'), 1000);
+        }
+      });
+      
+      if(!isValid) return;
+
       const productId = orderProductId.value;
       const product = productsDatabase[productId];
       const qty = document.getElementById('order-qty').value;
@@ -883,8 +890,26 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const message = `Nuevo pedido TCA4SHOP\n\nProducto: ${product.name}\nCantidad: ${qty} unidad(es)\n\nCliente:\n- Nombre: ${fname} ${lname}\n- Teléfono: ${phone}\n\nDirección de entrega:\n- Departamento: ${depto}\n- Municipio: ${muni}\n- Dirección: ${address}\n- Zona: ${zone}\n\nTotal estimado: Q${total.toLocaleString()}`;
 
-      window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
-      closeProductModal();
+      // Visual Confirmation
+      const originalFormHtml = orderForm.innerHTML;
+      orderForm.innerHTML = `
+        <div id="order-confirmation" style="display:flex;">
+          <div class="confirm-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <h3>¡Preparando tu pedido!</h3>
+          <p>Te estamos redirigiendo a WhatsApp para confirmar los detalles finales y el envío.</p>
+        </div>
+      `;
+      
+      setTimeout(() => {
+        window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+        setTimeout(() => {
+          closeProductModal();
+          orderForm.innerHTML = originalFormHtml; // restore for next time
+          orderForm.reset();
+        }, 500);
+      }, 1500);
     });
   }
 
@@ -1138,3 +1163,142 @@ window.changeMainMedia = function(type, src, element) {
   if(element) element.style.borderColor = 'var(--green-brand)';
 };
 
+
+
+// ==========================================
+// NEW FEATURES FOR SEO, UX & FUNCTIONALITY
+// ==========================================
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // --- Promo Banner Close ---
+  const promoBanner = document.getElementById('promo-banner');
+  const promoClose = document.getElementById('promo-banner-close');
+  if (promoBanner && promoClose) {
+    if (localStorage.getItem('promoBannerClosed') === 'true') {
+      promoBanner.classList.add('hidden');
+    }
+    promoClose.addEventListener('click', () => {
+      promoBanner.classList.add('hidden');
+      localStorage.setItem('promoBannerClosed', 'true');
+    });
+  }
+
+  // --- Dark Mode Toggle ---
+  const darkModeBtn = document.getElementById('dark-mode-btn');
+  if (darkModeBtn) {
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (isDarkMode) document.body.classList.add('dark-mode');
+    
+    darkModeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+    });
+  }
+
+  // --- Back to Top Button ---
+  const backToTopBtn = document.getElementById('back-to-top');
+  if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    });
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // --- Animated Counters ---
+  const counters = document.querySelectorAll('.counter-number');
+  if (counters.length > 0) {
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const target = entry.target;
+          const endValue = parseInt(target.getAttribute('data-target'));
+          const duration = 2000;
+          const increment = endValue / (duration / 16); // 60fps
+          let current = 0;
+          
+          const updateCounter = () => {
+            current += increment;
+            if (current < endValue) {
+              target.innerText = Math.ceil(current) + (target.innerText.includes('%') ? '%' : target.innerText.includes('+') ? '+' : '');
+              requestAnimationFrame(updateCounter);
+            } else {
+              target.innerText = endValue + (endValue === 100 ? '%' : endValue === 200 ? '+' : '');
+            }
+          };
+          updateCounter();
+          observer.unobserve(target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    counters.forEach(counter => counterObserver.observe(counter));
+  }
+
+  // --- FAQ Accordion ---
+  const faqItems = document.querySelectorAll('.faq-question');
+  faqItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const isExpanded = item.getAttribute('aria-expanded') === 'true';
+      
+      // Close all others
+      faqItems.forEach(other => {
+        other.setAttribute('aria-expanded', 'false');
+        other.nextElementSibling.classList.remove('open');
+      });
+      
+      if (!isExpanded) {
+        item.setAttribute('aria-expanded', 'true');
+        item.nextElementSibling.classList.add('open');
+      }
+    });
+  });
+
+  // --- Product Filter ---
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const productCards = document.querySelectorAll('.catalog-grid > a');
+  if (filterBtns.length > 0 && productCards.length > 0) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const filter = btn.getAttribute('data-filter');
+        productCards.forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-category') === filter) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  // --- Privacy Modal ---
+  const privacyLink = document.getElementById('privacy-link');
+  const privacyOverlay = document.getElementById('privacy-overlay');
+  const privacyModal = document.getElementById('privacy-modal');
+  const privacyClose = document.getElementById('privacy-modal-close');
+  
+  if (privacyLink && privacyModal) {
+    privacyLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      privacyOverlay.classList.add('active');
+      privacyModal.classList.add('open');
+    });
+    const closePrivacy = () => {
+      privacyOverlay.classList.remove('active');
+      privacyModal.classList.remove('open');
+    };
+    if(privacyClose) privacyClose.addEventListener('click', closePrivacy);
+    if(privacyOverlay) privacyOverlay.addEventListener('click', closePrivacy);
+  }
+
+});

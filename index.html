@@ -5,19 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TCA4SHOP | Tecnología Premium en Guatemala</title>
   <meta name="description" content="Compra AirPods Pro 2 y smartwatches premium en Guatemala. Productos originales, envío rápido y atención personalizada por WhatsApp.">
+  <meta name="keywords" content="AirPods Guatemala, smartwatch Guatemala, tecnología premium Guatemala, TCA4SHOP">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://adrianggjs.github.io/TCA4SHOP/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://adrianggjs.github.io/TCA4SHOP/">
   <meta property="og:title" content="TCA4SHOP — Tecnología Premium en Guatemala">
-  <meta property="og:description" content="AirPods Pro 2 desde Q1,299. Entrega en Guatemala. Escríbenos por WhatsApp.">
-  <meta property="og:image" content="assets/img/airpods_pro2.png">
-  <meta name="theme-color" content="#081C15">
+  <meta property="og:description" content="AirPods Pro 2 desde Q399. Smartwatches premium. Entrega en todo Guatemala. Escríbenos por WhatsApp.">
+  <meta property="og:image" content="https://adrianggjs.github.io/TCA4SHOP/assets/img/airpods_pro2.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="es_GT">
+  <meta property="og:site_name" content="TCA4SHOP">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TCA4SHOP — Tecnología Premium en Guatemala">
+  <meta name="twitter:description" content="AirPods Pro 2 desde Q399. Entrega en todo Guatemala.">
+  <meta name="twitter:image" content="https://adrianggjs.github.io/TCA4SHOP/assets/img/airpods_pro2.png">
+
+  <meta name="theme-color" content="#295544">
+
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23295544'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Montserrat,sans-serif' font-weight='800' font-size='11' fill='white'%3ETCA4%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23295544'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Montserrat,sans-serif' font-weight='800' font-size='11' fill='white'%3ETCA4%3C/text%3E%3C/svg%3E">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" href="assets/img/airpods_pro3.png" as="image">
   
   <link rel="stylesheet" href="css/styles.css?v=1785794993462">
   <script src="js/script.js?v=1785794993462" defer></script>
 </head>
 <body>
+
+  <!-- ===== BANNER DE PROMOCIÓN ===== -->
+  <div id="promo-banner">
+    <p>🔥 <strong>Envío GRATIS</strong> en compras de Q500 o más &nbsp;·&nbsp; 💬 Atención inmediata por WhatsApp</p>
+    <button id="promo-banner-close" aria-label="Cerrar banner">✕</button>
+  </div>
 
   <div id="jungle-bg">
 
@@ -139,6 +169,10 @@
         </a>
       </div>
       <div class="nav-actions">
+        <button id="dark-mode-btn" class="dark-mode-toggle" aria-label="Cambiar modo oscuro" title="Modo oscuro">
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
         <button class="nav-cart-btn" id="cart-toggle-btn" aria-label="Abrir Carrito">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="9" cy="21" r="1"></circle>
@@ -219,6 +253,72 @@
   </section>
 
   <!-- ==========================================
+       SECCIÓN: CÓMO FUNCIONA
+       ========================================== -->
+  <section class="section-light how-it-works-section" id="como-funciona">
+    <div class="section-header reveal">
+      <h2 class="section-title">Así de fácil.</h2>
+      <p class="section-subtitle">3 pasos para tener tecnología premium en tus manos.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step reveal" style="transition-delay:100ms">
+        <div class="how-step-number">01</div>
+        <div class="how-step-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        </div>
+        <h3>Elige tu producto</h3>
+        <p>Explora nuestro catálogo de tecnología premium y selecciona lo que te gusta.</p>
+      </div>
+      <div class="how-step-arrow reveal" style="transition-delay:150ms">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+      <div class="how-step reveal" style="transition-delay:200ms">
+        <div class="how-step-number">02</div>
+        <div class="how-step-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>Escríbenos</h3>
+        <p>Llena el formulario y confirma tu pedido por WhatsApp. Te respondemos en minutos.</p>
+      </div>
+      <div class="how-step-arrow reveal" style="transition-delay:250ms">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+      <div class="how-step reveal" style="transition-delay:300ms">
+        <div class="how-step-number">03</div>
+        <div class="how-step-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <h3>Recibe en casa</h3>
+        <p>Coordina tu entrega en todo Guatemala. Rápido, seguro y con seguimiento.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       CONTADORES
+       ========================================== -->
+  <section class="counters-section section-dark" id="contadores">
+    <div class="counters-grid">
+      <div class="counter-item reveal" style="transition-delay:100ms">
+        <div class="counter-number" data-target="200">0</div>
+        <div class="counter-label">Clientes satisfechos</div>
+      </div>
+      <div class="counter-item reveal" style="transition-delay:200ms">
+        <div class="counter-number" data-target="3">0</div>
+        <div class="counter-label">Productos premium</div>
+      </div>
+      <div class="counter-item reveal" style="transition-delay:300ms">
+        <div class="counter-number" data-target="5">0</div>
+        <div class="counter-label">Minutos de respuesta</div>
+      </div>
+      <div class="counter-item reveal" style="transition-delay:400ms">
+        <div class="counter-number" data-target="100">0</div>
+        <div class="counter-label">% Originales</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
        TESTIMONIOS
        ========================================== -->
   <section class="section-light" id="testimonios">
@@ -294,6 +394,72 @@
   </section>
 
   <!-- ==========================================
+       FAQ SECTION
+       ========================================== -->
+  <section class="faq-section section-light" id="faq">
+    <div class="section-header reveal">
+      <h2 class="section-title">Preguntas frecuentes.</h2>
+      <p class="section-subtitle">Todo lo que necesitas saber antes de comprar.</p>
+    </div>
+    <div class="faq-list reveal" style="transition-delay:100ms">
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>¿Los productos son 100% originales?</span>
+          <svg class="faq-chevron" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Sí, absolutamente. Todos nuestros productos son 100% auténticos y originales. Cero réplicas, cero imitaciones. Nuestra reputación depende de eso.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>¿Hacen envíos a todo Guatemala?</span>
+          <svg class="faq-chevron" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Sí, cubrimos los 22 departamentos de Guatemala. Por eso en el formulario de pedido puedes seleccionar exactamente tu departamento y municipio para coordinar la entrega.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>¿Cómo coordino el pago?</span>
+          <svg class="faq-chevron" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Una vez que confirmes tu pedido por WhatsApp, te guiamos paso a paso. Aceptamos transferencias bancarias, depósitos y efectivo contra entrega en Ciudad de Guatemala.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>¿Cuánto tarda en llegar mi pedido?</span>
+          <svg class="faq-chevron" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>En Ciudad de Guatemala generalmente 1-2 días hábiles. En el interior del país 2-4 días hábiles según el departamento, dependiendo del courier disponible.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>¿Tienen precios especiales para mayoristas?</span>
+          <svg class="faq-chevron" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>¡Sí! Contamos con un <a href="mayoristas.html" style="color: var(--green-brand); font-weight: 600;">Portal de Mayoristas</a> exclusivo con precios preferenciales para pedidos mínimos de 6 unidades.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>¿Qué garantía tienen los productos?</span>
+          <svg class="faq-chevron" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Ofrecemos soporte técnico post-venta y te ayudamos con la configuración inicial de tu dispositivo. Para garantías del fabricante, te orientamos sobre los canales oficiales de Apple y las marcas de smartwatch.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
        FOOTER
        ========================================== -->
   <footer class="footer">
@@ -312,7 +478,8 @@
     </div>
     
     <div class="copyright">
-      &copy; 2025 TCA4SHOP. Todos los derechos reservados.
+      &copy; 2025 TCA4SHOP. Todos los derechos reservados. &nbsp;|&nbsp;
+      <button id="privacy-link" style="background:none;border:none;color:inherit;font-size:inherit;cursor:pointer;text-decoration:underline;">Privacidad</button>
     </div>
   </footer>
 
@@ -326,6 +493,23 @@
       </div>
       <span class="wa-text">Chatear ahora</span>
     </a>
+  </div>
+
+  <!-- Botón Volver Arriba -->
+  <button id="back-to-top" aria-label="Volver al inicio">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <!-- Modal Política de Privacidad -->
+  <div id="privacy-overlay" class="modal-overlay-generic"></div>
+  <div id="privacy-modal" class="generic-modal">
+    <button class="generic-modal-close" id="privacy-modal-close" aria-label="Cerrar">✕</button>
+    <h2>Política de Privacidad</h2>
+    <p><strong>Última actualización:</strong> Agosto 2026</p>
+    <p>TCA4SHOP respeta tu privacidad. Los datos que compartes al realizar un pedido (nombre, teléfono, dirección) se usan únicamente para coordinar la entrega de tu compra vía WhatsApp.</p>
+    <p>No vendemos ni compartimos tu información personal con terceros. No almacenamos datos en servidores externos; toda la información permanece en tu conversación de WhatsApp.</p>
+    <p>Las reseñas que publiques en el sitio se guardan localmente en tu navegador (localStorage) y no se transmiten a ningún servidor.</p>
+    <p>Para cualquier consulta sobre privacidad, escríbenos a nuestro WhatsApp: <strong>+502 5410-2510</strong>.</p>
   </div>
 
 </body>

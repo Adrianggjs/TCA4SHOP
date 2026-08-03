@@ -3,9 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal de Mayoristas | TCA4SHOP</title>
+  <title>Portal de Mayoristas | TCA4SHOP Guatemala</title>
   <meta name="description" content="Acceso exclusivo para mayoristas y socios comerciales de TCA4SHOP. Obtén precios preferenciales por volumen.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://adrianggjs.github.io/TCA4SHOP/mayoristas.html">
+  <meta property="og:title" content="Portal de Mayoristas | TCA4SHOP">
+  <meta property="og:description" content="Precios especiales para distribuidores en Guatemala.">
+  <meta property="og:image" content="https://adrianggjs.github.io/TCA4SHOP/assets/img/airpods_pro2.png">
   <meta name="theme-color" content="#295544">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23295544'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Montserrat,sans-serif' font-weight='800' font-size='11' fill='white'%3ETCA4%3C/text%3E%3C/svg%3E">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -163,9 +170,22 @@
     </div>
     
     <div class="copyright">
-      &copy; 2025 TCA4SHOP. Todos los derechos reservados.
+      &copy; 2025 TCA4SHOP. Todos los derechos reservados. &nbsp;|&nbsp;
+      <button id="privacy-link" style="background:none;border:none;color:inherit;font-size:inherit;cursor:pointer;text-decoration:underline;">Privacidad</button>
     </div>
   </footer>
+
+  <!-- Modal Política de Privacidad -->
+  <div id="privacy-overlay" class="modal-overlay-generic"></div>
+  <div id="privacy-modal" class="generic-modal">
+    <button class="generic-modal-close" id="privacy-modal-close" aria-label="Cerrar">✕</button>
+    <h2>Política de Privacidad</h2>
+    <p><strong>Última actualización:</strong> Agosto 2026</p>
+    <p>TCA4SHOP respeta tu privacidad. Los datos que compartes al realizar un pedido (nombre, teléfono, dirección) se usan únicamente para coordinar la entrega de tu compra vía WhatsApp.</p>
+    <p>No vendemos ni compartimos tu información personal con terceros. No almacenamos datos en servidores externos; toda la información permanece en tu conversación de WhatsApp.</p>
+    <p>Las reseñas que publiques en el sitio se guardan localmente en tu navegador (localStorage) y no se transmiten a ningún servidor.</p>
+    <p>Para cualquier consulta sobre privacidad, escríbenos a nuestro WhatsApp: <strong>+502 5410-2510</strong>.</p>
+  </div>
 
   <!-- Botón WhatsApp Flotante -->
   <div class="floating-wa-container">
