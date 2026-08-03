@@ -69,13 +69,17 @@ function initProductPage() {
               <input type='text' id='page-order-fname' placeholder='Nombre' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
               <input type='text' id='page-order-lname' placeholder='Apellido' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
             </div>
-            <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;'>
+            <div style='display: grid; grid-template-columns: 1fr; gap: 1rem;'>
               <input type='tel' id='page-order-phone' placeholder='Teléfono' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
-              <input type='email' id='page-order-email' placeholder='Correo electrónico' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
             </div>
             <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;'>
-              <input type='text' id='page-order-depto' placeholder='Departamento' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
-              <input type='text' id='page-order-muni' placeholder='Municipio' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
+              <select id='page-order-depto' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
+                <option value='' disabled selected>Departamento</option>
+                ${Object.keys(guatemalaLocations).map(d => `<option value="${d}">${d}</option>`).join('')}
+              </select>
+              <select id='page-order-muni' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
+                <option value='' disabled selected>Municipio</option>
+              </select>
             </div>
             <div style='display: grid; grid-template-columns: 2fr 1fr; gap: 1rem;'>
               <input type='text' id='page-order-address' placeholder='Dirección exacta' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
@@ -108,14 +112,13 @@ function initProductPage() {
       const fname = document.getElementById('page-order-fname').value.trim();
       const lname = document.getElementById('page-order-lname').value.trim();
       const phone = document.getElementById('page-order-phone').value.trim();
-      const email = document.getElementById('page-order-email').value.trim();
       const depto = document.getElementById('page-order-depto').value.trim();
       const muni = document.getElementById('page-order-muni').value.trim();
       const address = document.getElementById('page-order-address').value.trim();
       const zone = document.getElementById('page-order-zone').value.trim();
       
       const total = product.price * qty;
-      const message = `Nuevo pedido TCA4SHOP\n\nProducto: ${product.name}\nCantidad: ${qty} unidad(es)\n\nCliente:\n- Nombre: ${fname} ${lname}\n- Teléfono: ${phone}\n- Correo: ${email}\n\nDirección de entrega:\n- Departamento: ${depto}\n- Municipio: ${muni}\n- Dirección: ${address}\n- Zona: ${zone}\n\nTotal estimado: Q${total.toLocaleString()}`;
+      const message = `Nuevo pedido TCA4SHOP\n\nProducto: ${product.name}\nCantidad: ${qty} unidad(es)\n\nCliente:\n- Nombre: ${fname} ${lname}\n- Teléfono: ${phone}\n\nDirección de entrega:\n- Departamento: ${depto}\n- Municipio: ${muni}\n- Dirección: ${address}\n- Zona: ${zone}\n\nTotal estimado: Q${total.toLocaleString()}`;
       
       window.open(`https://wa.me/50254102510?text=${encodeURIComponent(message)}`, '_blank');
     });

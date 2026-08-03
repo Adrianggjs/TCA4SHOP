@@ -1948,7 +1948,7 @@ body.sec-cta {
   left: 50%;
   transform: translate(-50%, -45%) scale(0.95);
   width: 90%;
-  max-width: 1000px;
+  max-width: 1200px;
   max-height: 90vh;
   background: white;
   border-radius: 24px;
@@ -2289,3 +2289,17 @@ body.sec-cta {
   background: var(--green-brand);
   border-radius: 4px;
 }
+ . s h o p i f y - p r o d u c t - g r i d   { 
+     d i s p l a y :   g r i d ; 
+     g r i d - t e m p l a t e - c o l u m n s :   1 f r ; 
+     g a p :   2 r e m ; 
+ } 
+ 
+ @ m e d i a   ( m i n - w i d t h :   9 9 2 p x )   { 
+     . s h o p i f y - p r o d u c t - g r i d   { 
+         g r i d - t e m p l a t e - c o l u m n s :   1 f r   1 f r ; 
+         g a p :   4 r e m ; 
+     } 
+ } 
+  
+ 

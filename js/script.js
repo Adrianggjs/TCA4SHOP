@@ -1,3 +1,50 @@
+const guatemalaLocations = {
+    "Alta Verapaz": ["Cobán", "Santa Cruz Verapaz", "San Cristóbal Verapaz", "Tactic", "Tamahú", "Tucurú", "Panzós", "Senahú", "San Pedro Carchá", "San Juan Chamelco", "Lanquín", "Cahabón", "Chahal", "Fray Bartolomé de las Casas", "Santa Catalina La Tinta", "Raxruhá", "La Tinta"],
+    "Baja Verapaz": ["Salamá", "San Miguel Chicaj", "Rabinal", "Cubulco", "Granados", "El Chol", "San Jerónimo", "Purulhá"],
+    "Chimaltenango": ["Chimaltenango", "San José Poaquil", "San Martín Jilotepeque", "Comalapa", "Santa Apolonia", "Tecpán Guatemala", "Patzún", "Pochuta", "Patzicía", "Santa Cruz Balanyá", "Acatenango", "Yepocapa", "San Andrés Itzapa", "Parramos", "Zaragoza", "El Tejar"],
+    "Chiquimula": ["Chiquimula", "San José La Arada", "San Juan Ermita", "Jocotán", "Camotán", "Olopa", "Esquipulas", "Concepción Las Minas", "Quetzaltepeque", "San Jacinto", "Ipala"],
+    "El Progreso": ["Guastatoya", "Morazán", "San Agustín Acasaguastlán", "San Cristóbal Acasaguastlán", "El Jícaro", "Sansare", "Sanarate", "San Antonio La Paz"],
+    "Escuintla": ["Escuintla", "Santa Lucía Cotzumalguapa", "La Democracia", "Siquinalá", "Masagua", "Tiquisate", "La Gomera", "Guanagazapa", "San José", "Iztapa", "Palín", "San Vicente Pacaya", "Nueva Concepción"],
+    "Guatemala": ["Guatemala", "Santa Catarina Pinula", "San José Pinula", "San José del Golfo", "Palencia", "Chinautla", "San Pedro Ayampuc", "Mixco", "San Pedro Sacatepéquez", "San Juan Sacatepéquez", "San Raymundo", "Chuarrancho", "Fraijanes", "Amatitlán", "Villa Nueva", "Villa Canales", "Petapa"],
+    "Huehuetenango": ["Huehuetenango", "Chiantla", "Malacatancito", "Cuilco", "Nentón", "San Pedro Necta", "Jacaltenango", "Soloma", "Ixtahuacán", "Santa Bárbara", "La Libertad", "La Democracia", "San Miguel Acatán", "San Rafael La Independencia", "Todos Santos Cuchumatán", "San Juan Atitán", "Santa Eulalia", "San Mateo Ixtatán", "Colotenango", "San Sebastián Huehuetenango", "Tectitán", "Concepción Huista", "San Juan Ixcoy", "San Antonio Huista", "San Sebastián Coatán", "Barillas", "Aguacatán", "San Rafael Petzal", "San Gaspar Ixchil", "Santiago Chimaltenango", "Santa Ana Huista", "Unión Cantinil"],
+    "Izabal": ["Puerto Barrios", "Livingston", "El Estor", "Morales", "Los Amates"],
+    "Jalapa": ["Jalapa", "San Pedro Pinula", "San Luis Jilotepeque", "San Manuel Chaparrón", "San Carlos Alzatate", "Monjas", "Mataquescuintla"],
+    "Jutiapa": ["Jutiapa", "El Progreso", "Santa Catarina Mita", "Agua Blanca", "Asunción Mita", "Yupiltepeque", "Atescatempa", "Jerez", "El Adelanto", "Zapotitlán", "Comapa", "Jalpatagua", "Conguaco", "Moyuta", "Pasaco", "San José Acatempa", "Quesada"],
+    "Petén": ["Flores", "San José", "San Benito", "San Andrés", "La Libertad", "San Francisco", "Santa Ana", "Dolores", "San Luis", "Sayaxché", "Melchor de Mencos", "Poptún", "Las Cruces", "El Chal"],
+    "Quetzaltenango": ["Quetzaltenango", "Salcajá", "Olintepeque", "San Carlos Sija", "Sibilia", "Cabricán", "Cajolá", "San Miguel Sigüilá", "Ostuncalco", "San Mateo", "Concepción Chiquirichapa", "San Martín Sacatepéquez", "Almolonga", "Cantel", "Huitán", "Zunil", "Colomba", "San Francisco La Unión", "El Palmar", "Coatepeque", "Génova", "Flores Costa Cuca", "La Esperanza", "Palestina de Los Altos"],
+    "Quiché": ["Santa Cruz del Quiché", "Chiché", "Chinique", "Zacualpa", "Chajul", "Chichicastenango", "Patzité", "San Antonio Ilotenango", "San Pedro Jocopilas", "Cunén", "San Juan Cotzal", "Joyabaj", "Nebaj", "San Andrés Sajcabajá", "Uspantán", "Sacapulas", "San Bartolomé Jocotenango", "Canillá", "Chicamán", "Ixcán", "Pachalum"],
+    "Retalhuleu": ["Retalhuleu", "San Sebastián", "Santa Cruz Muluá", "San Martín Zapotitlán", "San Felipe", "San Andrés Villa Seca", "Champerico", "Nuevo San Carlos", "El Asintal"],
+    "Sacatepéquez": ["Antigua Guatemala", "Jocotenango", "Pastores", "Sumpango", "Santo Domingo Xenacoj", "Santiago Sacatepéquez", "San Bartolomé Milpas Altas", "San Lucas Sacatepéquez", "Santa Lucía Milpas Altas", "Magdalena Milpas Altas", "Santa María de Jesús", "Ciudad Vieja", "San Miguel Dueñas", "Alotenango", "San Antonio Aguas Calientes", "Santa Catarina Barahona"],
+    "San Marcos": ["San Marcos", "San Pedro Sacatepéquez", "San Antonio Sacatepéquez", "Comitancillo", "San Miguel Ixtahuacán", "Concepción Tutuapa", "Tacaná", "Sibinal", "Tajumulco", "Tejutla", "San Rafael Pie de la Cuesta", "Nuevo Progreso", "El Tumbador", "El Rodeo", "Malacatán", "Catarina", "Ayutla", "Ocós", "San Pablo", "El Quetzal", "La Reforma", "Pajapita", "Ixchiguán", "San José Ojetenam", "San Cristóbal Cucho", "Sipacapa", "Esquipulas Palo Gordo", "Río Blanco", "San Lorenzo", "La Blanca"],
+    "Santa Rosa": ["Cuilapa", "Barberena", "Santa Rosa de Lima", "Casillas", "San Rafael Las Flores", "Oratorio", "San Juan Tecuaco", "Chiquimulilla", "Taxisco", "Santa María Ixhuatán", "Guazacapán", "Santa Cruz Naranjo", "Pueblo Nuevo Viñas", "Nueva Santa Rosa"],
+    "Sololá": ["Sololá", "San José Chacayá", "Santa María Visitación", "Santa Lucía Utatlán", "Nahualá", "Santa Catarina Ixtahuacán", "Santa Clara La Laguna", "Concepción", "San Andrés Semetabaj", "Panajachel", "Santa Catarina Palopó", "San Antonio Palopó", "San Lucas Tolimán", "Santa Cruz La Laguna", "San Pablo La Laguna", "San Marcos La Laguna", "San Juan La Laguna", "San Pedro La Laguna", "Santiago Atitlán"],
+    "Suchitepéquez": ["Mazatenango", "Cuyotenango", "San Francisco Zapotitlán", "San Bernardino", "San José El Idolo", "Santo Domingo Suchitepéquez", "San Lorenzo", "Samayac", "San Pablo Jocopilas", "San Antonio Suchitepéquez", "San Miguel Panán", "San Gabriel", "Chicacao", "Patulul", "Santa Bárbara", "San Juan Bautista", "Santo Tomás La Unión", "Zunilito", "Pueblo Nuevo", "Río Bravo", "San José La Máquina"],
+    "Totonicapán": ["Totonicapán", "San Cristóbal Totonicapán", "San Francisco El Alto", "San Andrés Xecul", "Momostenango", "Santa María Chiquimula", "Santa Lucía La Reforma", "San Bartolo"],
+    "Zacapa": ["Zacapa", "Estanzuela", "Río Hondo", "Gualán", "Teculután", "Usumatlán", "Cabañas", "San Diego", "La Unión", "Huité", "San Jorge"]
+};
+
+function populateMuniSelect(deptoVal, muniSelectId) {
+  const muniSelect = document.getElementById(muniSelectId);
+  if (!muniSelect) return;
+  muniSelect.innerHTML = '<option value="" disabled selected>Municipio</option>';
+  if (guatemalaLocations[deptoVal]) {
+    guatemalaLocations[deptoVal].forEach(muni => {
+      const option = document.createElement('option');
+      option.value = muni;
+      option.textContent = muni;
+      muniSelect.appendChild(option);
+    });
+  }
+}
+
+document.addEventListener('change', (e) => {
+  if (e.target.id === 'order-depto') {
+    populateMuniSelect(e.target.value, 'order-muni');
+  } else if (e.target.id === 'page-order-depto') {
+    populateMuniSelect(e.target.value, 'page-order-muni');
+  }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // Configuración WhatsApp
@@ -826,7 +873,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const fname = document.getElementById('order-fname').value.trim();
       const lname = document.getElementById('order-lname').value.trim();
       const phone = document.getElementById('order-phone').value.trim();
-      const email = document.getElementById('order-email').value.trim();
       
       const depto = document.getElementById('order-depto').value;
       const muni = document.getElementById('order-muni').value.trim();
@@ -835,7 +881,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const total = product.price * qty;
       
-      const message = `Nuevo pedido TCA4SHOP\n\nProducto: ${product.name}\nCantidad: ${qty} unidad(es)\n\nCliente:\n- Nombre: ${fname} ${lname}\n- Teléfono: ${phone}\n- Correo: ${email}\n\nDirección de entrega:\n- Departamento: ${depto}\n- Municipio: ${muni}\n- Dirección: ${address}\n- Zona: ${zone}\n\nTotal estimado: Q${total.toLocaleString()}`;
+      const message = `Nuevo pedido TCA4SHOP\n\nProducto: ${product.name}\nCantidad: ${qty} unidad(es)\n\nCliente:\n- Nombre: ${fname} ${lname}\n- Teléfono: ${phone}\n\nDirección de entrega:\n- Departamento: ${depto}\n- Municipio: ${muni}\n- Dirección: ${address}\n- Zona: ${zone}\n\nTotal estimado: Q${total.toLocaleString()}`;
 
       window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
       closeProductModal();
@@ -1012,13 +1058,17 @@ function initProductPage() {
               <input type='text' id='page-order-fname' placeholder='Nombre' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
               <input type='text' id='page-order-lname' placeholder='Apellido' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
             </div>
-            <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;'>
+            <div style='display: grid; grid-template-columns: 1fr; gap: 1rem;'>
               <input type='tel' id='page-order-phone' placeholder='Teléfono' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
-              <input type='email' id='page-order-email' placeholder='Correo electrónico' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
             </div>
             <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;'>
-              <input type='text' id='page-order-depto' placeholder='Departamento' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
-              <input type='text' id='page-order-muni' placeholder='Municipio' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
+              <select id='page-order-depto' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
+                <option value='' disabled selected>Departamento</option>
+                ${Object.keys(guatemalaLocations).map(d => `<option value="${d}">${d}</option>`).join('')}
+              </select>
+              <select id='page-order-muni' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
+                <option value='' disabled selected>Municipio</option>
+              </select>
             </div>
             <div style='display: grid; grid-template-columns: 2fr 1fr; gap: 1rem;'>
               <input type='text' id='page-order-address' placeholder='Dirección exacta' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
@@ -1051,14 +1101,13 @@ function initProductPage() {
       const fname = document.getElementById('page-order-fname').value.trim();
       const lname = document.getElementById('page-order-lname').value.trim();
       const phone = document.getElementById('page-order-phone').value.trim();
-      const email = document.getElementById('page-order-email').value.trim();
       const depto = document.getElementById('page-order-depto').value.trim();
       const muni = document.getElementById('page-order-muni').value.trim();
       const address = document.getElementById('page-order-address').value.trim();
       const zone = document.getElementById('page-order-zone').value.trim();
       
       const total = product.price * qty;
-      const message = `Nuevo pedido TCA4SHOP\n\nProducto: ${product.name}\nCantidad: ${qty} unidad(es)\n\nCliente:\n- Nombre: ${fname} ${lname}\n- Teléfono: ${phone}\n- Correo: ${email}\n\nDirección de entrega:\n- Departamento: ${depto}\n- Municipio: ${muni}\n- Dirección: ${address}\n- Zona: ${zone}\n\nTotal estimado: Q${total.toLocaleString()}`;
+      const message = `Nuevo pedido TCA4SHOP\n\nProducto: ${product.name}\nCantidad: ${qty} unidad(es)\n\nCliente:\n- Nombre: ${fname} ${lname}\n- Teléfono: ${phone}\n\nDirección de entrega:\n- Departamento: ${depto}\n- Municipio: ${muni}\n- Dirección: ${address}\n- Zona: ${zone}\n\nTotal estimado: Q${total.toLocaleString()}`;
       
       window.open(`https://wa.me/50254102510?text=${encodeURIComponent(message)}`, '_blank');
     });

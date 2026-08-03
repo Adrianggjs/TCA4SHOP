@@ -153,9 +153,8 @@
             <input type="text" id="order-fname" placeholder="Nombre" required>
             <input type="text" id="order-lname" placeholder="Apellido" required>
           </div>
-          <div class="form-row">
+          <div class="form-row" style="grid-template-columns: 1fr;">
             <input type="tel" id="order-phone" placeholder="Teléfono" required>
-            <input type="email" id="order-email" placeholder="Correo electrónico" required>
           </div>
           <div class="form-row">
             <select id="order-depto" required>
@@ -183,7 +182,9 @@
               <option value="Totonicapán">Totonicapán</option>
               <option value="Zacapa">Zacapa</option>
             </select>
-            <input type="text" id="order-muni" placeholder="Municipio" required>
+            <select id="order-muni" required>
+              <option value="" disabled selected>Municipio</option>
+            </select>
           </div>
           <div class="form-row">
             <input type="text" id="order-address" placeholder="Dirección exacta" required>
