@@ -2028,6 +2028,7 @@ body.promo-closed .navbar {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+  mix-blend-mode: darken;
 }
 
 .product-modal-thumbnails {
@@ -2048,6 +2049,7 @@ body.promo-closed .navbar {
   opacity: 0.5;
   transform: scale(0.95);
   transition: all 0.3s var(--ease-apple);
+  mix-blend-mode: darken;
 }
 
 .product-modal-thumbnails img:hover {
