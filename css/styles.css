@@ -2014,9 +2014,9 @@ body.promo-closed .navbar {
 
 .product-modal-main-img {
   width: 100%;
-  background: #f7f7f7;
+  background: transparent;
   border-radius: 16px;
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2032,24 +2032,32 @@ body.promo-closed .navbar {
 
 .product-modal-thumbnails {
   display: flex;
-  gap: 0.8rem;
+  gap: 1.5rem;
   overflow-x: auto;
-  padding-bottom: 0.5rem;
+  padding-bottom: 1rem;
+  justify-content: center;
 }
 
 .product-modal-thumbnails img {
   width: 80px;
   height: 80px;
-  border-radius: 10px;
-  background: #f7f7f7;
+  border-radius: 12px;
+  background: transparent;
   object-fit: cover;
   cursor: pointer;
-  border: 2px solid transparent;
-  transition: border-color 0.3s ease;
+  opacity: 0.5;
+  transform: scale(0.95);
+  transition: all 0.3s var(--ease-apple);
+}
+
+.product-modal-thumbnails img:hover {
+  opacity: 0.8;
 }
 
 .product-modal-thumbnails img.active {
-  border-color: var(--green-brand);
+  opacity: 1;
+  transform: scale(1.1);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
 .product-modal-details {
