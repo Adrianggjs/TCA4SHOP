@@ -1955,7 +1955,7 @@ body.promo-closed .navbar {
   width: 90%;
   max-width: 1200px;
   max-height: 90vh;
-  background: white;
+  background: #f5f5f7; /* Cambiado a gris muy claro */
   border-radius: 24px;
   z-index: 10001;
   opacity: 0;
@@ -1995,8 +1995,8 @@ body.promo-closed .navbar {
 .product-modal-content {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
-  padding: 2.5rem;
+  gap: 1.5rem;
+  padding: 1.5rem; /* Menos padding en móvil */
 }
 
 @media (min-width: 768px) {
@@ -2004,12 +2004,21 @@ body.promo-closed .navbar {
     grid-template-columns: 1fr 1fr;
     padding: 3rem;
   }
+  .product-modal-gallery,
+  .product-modal-details {
+    padding: 2.5rem;
+  }
 }
 
 .product-modal-gallery {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 .product-modal-main-img {
@@ -2066,6 +2075,11 @@ body.promo-closed .navbar {
 .product-modal-details {
   display: flex;
   flex-direction: column;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 .product-modal-title {

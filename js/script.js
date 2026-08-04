@@ -764,6 +764,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalSelectedRating = document.getElementById('modal-selected-rating');
   const modalReviewsList = document.getElementById('modal-reviews-list');
 
+  let productModalAutoplayTimer;
+
   function openProductModal(productId) {
     const product = productsDatabase[productId];
     if (!product) return;
@@ -784,17 +786,44 @@ document.addEventListener('DOMContentLoaded', () => {
     modalMainImg.src = product.images[0];
     
     modalThumbnails.innerHTML = '';
+    
+    let currentGalleryIndex = 0;
+    
+    function setModalImage(idx) {
+      if (!product.images[idx]) return;
+      currentGalleryIndex = idx;
+      modalMainImg.src = product.images[idx];
+      Array.from(modalThumbnails.children).forEach((c, i) => {
+        if (i === idx) {
+          c.classList.add('active');
+        } else {
+          c.classList.remove('active');
+        }
+      });
+    }
+
+    function startModalAutoplay() {
+      clearInterval(productModalAutoplayTimer);
+      if (product.images.length > 1) {
+        productModalAutoplayTimer = setInterval(() => {
+          let nextIdx = (currentGalleryIndex + 1) % product.images.length;
+          setModalImage(nextIdx);
+        }, 4000);
+      }
+    }
+
     product.images.forEach((img, idx) => {
       const imgEl = document.createElement('img');
       imgEl.src = img;
       if (idx === 0) imgEl.classList.add('active');
       imgEl.addEventListener('click', () => {
-        modalMainImg.src = img;
-        Array.from(modalThumbnails.children).forEach(c => c.classList.remove('active'));
-        imgEl.classList.add('active');
+        setModalImage(idx);
+        startModalAutoplay(); // Reset timer on manual click
       });
       modalThumbnails.appendChild(imgEl);
     });
+    
+    startModalAutoplay();
     
     modalFeatures.innerHTML = '';
     product.features.forEach(feat => {
@@ -835,6 +864,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function closeProductModal() {
+    clearInterval(productModalAutoplayTimer);
     if (productModal) productModal.classList.remove('open');
     if (productModalOverlay) productModalOverlay.classList.remove('active');
   }
