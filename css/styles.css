@@ -2326,8 +2326,10 @@ body.promo-closed .navbar {
 }
 
 @media (min-width: 992px) {
-  
-
+  .shopify-product-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
 /* ==========================================================================
    PROMO BANNER
    ========================================================================== */
