@@ -29,7 +29,7 @@ const productsDatabase = {
     price: 599,
     desc: "La nueva generación del sonido. Diseñados para ofrecer un audio espacial envolvente que te sitúa en el centro de la música, junto a un ajuste anatómico que se siente casi invisible.",
     evolution: "Rediseño acústico para graves más profundos, batería extendida para todo el día y ecualización adaptativa que afina la música a tus oídos en tiempo real.",
-    images: ["assets/img/airpods_pro3_1.webp", "assets/img/airpods_pro3_2.webp", "assets/img/airpods_pro3_3.webp"],
+    images: ["assets/img/airpods_pro3_1.webp", "assets/img/airpods_pro3_2.webp", "assets/img/airpods_pro3_3.webp", "assets/img/airpods_pro3_4.webp"],
     video: "",
     features: [
       "Audio Espacial con seguimiento dinámico",
