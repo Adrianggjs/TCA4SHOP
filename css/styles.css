@@ -2983,3 +2983,223 @@ body.dark-mode .comparison-table td { color: #82B08A; }
     right: 20px !important;
   }
 }
+
+/* ==========================================================================
+   MOBILE CRITICAL FIXES — TCA4SHOP v2
+   ========================================================================== */
+
+/* ── Promo Banner: 2 líneas en móvil → ajuste dinámico de navbar ── */
+@media (max-width: 600px) {
+  #promo-banner {
+    font-size: 0.78rem;
+    padding: 0.55rem 2.5rem 0.55rem 1rem;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+    line-height: 1.4;
+  }
+
+  /* Ocultar texto largo en móvil, mostrar versión corta */
+  #promo-banner .promo-long {
+    display: none;
+  }
+  #promo-banner .promo-short {
+    display: inline;
+  }
+
+  /* Navbar empieza más abajo en móvil para el banner de 2 líneas */
+  .navbar {
+    top: 52px;
+  }
+
+  body.promo-closed .navbar {
+    top: 0;
+  }
+}
+
+/* En pantallas medianas + el banner es 1 línea */
+@media (min-width: 601px) {
+  #promo-banner .promo-long {
+    display: inline;
+  }
+  #promo-banner .promo-short {
+    display: none;
+  }
+}
+
+/* ── Hero: reducir altura mínima en móvil, no desperdiciar pantalla ── */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 88vh;
+    padding-top: 7rem;
+    padding-bottom: 2rem;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* Hero CTA visible inmediatamente */
+  .hero-cta-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .hero-cta-wrapper .btn {
+    width: 85%;
+    max-width: 320px;
+    justify-content: center;
+    font-size: 1.05rem;
+    padding: 1rem 1.5rem;
+  }
+
+  /* Reducir el padding excess del hero para que la siguiente sección se peine */
+  .hero-subtitle {
+    margin-bottom: 0;
+  }
+}
+
+/* ── Testimonial Card: arreglar padding excesivo en móvil ── */
+@media (max-width: 768px) {
+  .testimonial-card {
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .wa-chat-mockup {
+    padding: 1.2rem;
+  }
+
+  .wa-bubble {
+    font-size: 0.95rem;
+  }
+}
+
+/* ── Back-to-top: moverlo a la izquierda en móvil para no chocar con WA ── */
+@media (max-width: 768px) {
+  #back-to-top {
+    right: auto;
+    left: 1.2rem;
+    bottom: 6rem;
+  }
+}
+
+/* ── Floating WhatsApp: ocultar cuando está en zona del CTA principal ── */
+/* Se oculta via JS, pero en caso de falla CSS también lo protege */
+.floating-wa-container.hide-cta-zone {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* ── Bento grid: reducir gap en móvil para eliminar el espacio vacío ── */
+@media (max-width: 768px) {
+  .bento-grid {
+    gap: 1.2rem;
+  }
+
+  .bento-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .bento-card h3 {
+    font-size: 1.4rem;
+  }
+}
+
+/* ── Sección "Cómo funciona": mostrar flechas hacia abajo en móvil ── */
+@media (max-width: 767px) {
+  .how-steps {
+    gap: 0.5rem;
+  }
+
+  .how-step-arrow {
+    display: flex !important;
+    transform: rotate(90deg);
+    margin-top: 0;
+    justify-content: center;
+    opacity: 0.5;
+  }
+}
+
+/* ── Section padding consistente ── */
+@media (max-width: 768px) {
+  .section-light,
+  .section-dark {
+    padding: 3.5rem 1.25rem !important;
+  }
+
+  .faq-section {
+    padding: 3.5rem 1.25rem;
+  }
+
+  .comparison-section {
+    padding: 3.5rem 1.25rem;
+  }
+
+  .cta-section {
+    padding: 5rem 1.25rem !important;
+  }
+}
+
+/* ── Mejora menú móvil: links con mejor contraste y hover visible ── */
+@media (max-width: 768px) {
+  .nav-links a.nav-link {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+
+  .nav-links a.nav-link:hover,
+  .nav-links a.nav-link.active {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .nav-links .nav-wa-btn {
+    background: rgba(37, 211, 102, 0.15);
+    color: #4dde8f;
+    border: 1px solid rgba(37, 211, 102, 0.3);
+    font-size: 1.2rem;
+    padding: 0.6rem 1.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .nav-links .nav-wa-btn:hover {
+    background: #25D366;
+    color: white;
+  }
+}
+
+/* ── Hero product image ── */
+.hero-product-img {
+  width: 220px;
+  max-width: 55vw;
+  object-fit: contain;
+  animation: floatProduct 4s ease-in-out infinite;
+  filter: drop-shadow(0 20px 40px rgba(41, 85, 68, 0.25));
+  margin-top: 1.5rem;
+}
+
+@keyframes floatProduct {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+@media (max-width: 768px) {
+  .hero-product-img {
+    width: 180px;
+    margin-top: 1rem;
+  }
+}
+

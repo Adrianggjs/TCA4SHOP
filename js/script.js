@@ -1356,3 +1356,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  // --- Ocultar WhatsApp flotante cuando la sección CTA es visible ---
+  // Evita que el botón WA tape el botón "Comprar ahora"
+  const floatingWa = document.querySelector('.floating-wa-container');
+  const ctaSection = document.querySelector('.cta-section');
+
+  if (floatingWa && ctaSection && 'IntersectionObserver' in window) {
+    const ctaObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          floatingWa.classList.add('hide-cta-zone');
+        } else {
+          floatingWa.classList.remove('hide-cta-zone');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    ctaObserver.observe(ctaSection);
+  }
+});

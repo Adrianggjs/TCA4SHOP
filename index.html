@@ -38,8 +38,8 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet"></noscript>
   <link rel="preload" href="assets/img/airpods_pro3.webp" as="image">
   
-  <link rel="stylesheet" href="css/styles.css?v=1785794993462">
-  <script src="js/script.js?v=1785794993462" defer></script>
+  <link rel="stylesheet" href="css/styles.css?v=1785877000001">
+  <script src="js/script.js?v=1785877000001" defer></script>
   <!-- PWA & SEO -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#081C15">
@@ -69,7 +69,10 @@ src="https://www.facebook.com/tr?id=1706951260353673&ev=PageView&noscript=1"
 
   <!-- ===== BANNER DE PROMOCIÓN ===== -->
   <div id="promo-banner">
-    <p>🔥 <strong>Envío GRATIS</strong> en compras de Q500 o más &nbsp;·&nbsp; 💬 Atención inmediata por WhatsApp</p>
+    <p>
+      <span class="promo-long">🔥 <strong>Envío GRATIS</strong> en compras de Q500 o más &nbsp;·&nbsp; 💬 Atención inmediata por WhatsApp</span>
+      <span class="promo-short">🔥 Envío GRATIS en Q500+ &nbsp;|&nbsp; 💬 WhatsApp</span>
+    </p>
     <button id="promo-banner-close" aria-label="Cerrar banner">✕</button>
   </div>
 
@@ -229,7 +232,25 @@ src="https://www.facebook.com/tr?id=1706951260353673&ev=PageView&noscript=1"
         AirPods Pro 2 y smartwatches de élite.<br>
         Elevando la experiencia tecnológica en Guatemala.
       </p>
-      
+
+      <!-- Imagen producto flotante -->
+      <img
+        src="assets/img/airpods_pro3.webp"
+        alt="AirPods Pro 2 Guatemala"
+        class="hero-product-img reveal"
+        style="transition-delay: 300ms;"
+        loading="eager"
+      >
+
+      <!-- CTA visible en el hero desde el primer momento -->
+      <div class="hero-cta-wrapper reveal" style="transition-delay: 400ms;">
+        <a href="productos.html" class="btn btn-primary" id="hero-cta-btn">
+          🛍️ Ver productos
+        </a>
+        <a href="#" class="btn btn-secondary whatsapp-link" data-msg="Hola TCA4SHOP, quiero información sobre sus productos.">
+          💬 WhatsApp
+        </a>
+      </div>
 
     </div>
   </header>
