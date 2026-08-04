@@ -151,8 +151,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const navItems = document.querySelectorAll('.nav-link');
 
   window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
-  });
+    const bannerEl = document.getElementById('promo-banner');
+    const bannerVisible = bannerEl && !bannerEl.classList.contains('hidden');
+    if (bannerVisible) {
+      navbar.classList.toggle('scrolled', window.scrollY > 1);
+    } else {
+      navbar.classList.add('scrolled');
+    }
+  }, { passive: true });
+
 
   hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
@@ -673,6 +680,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (bar5 && pctLabel5) { bar5.style.width = `${pct5}%`; pctLabel5.textContent = `${pct5}%`; }
   } // Cierra updateReviewsSummary
 
+  // Llamada inicial para poblar la pàgina de reseñas al cargar
+  renderReviews();
+  updateReviewsSummary();
+
   const wModal = document.getElementById('wholesale-modal');
   const wModalOverlay = document.getElementById('wholesale-modal-overlay');
   const wPasswordInput = document.getElementById('wholesale-password');
@@ -1032,119 +1043,151 @@ function initProductPage() {
   const container = document.getElementById('single-product-container');
   if (!container) return;
 
-  const imgHtml = product.images.map((img, i) => `<img src='${img}' style='width:100%; border-radius:12px; margin-bottom:1rem; cursor:pointer; border:1px solid var(--divider-color);'>`).join('');
   const featHtml = product.features.map(f => `<li>${f}</li>`).join('');
   const boxHtml = product.inTheBox ? product.inTheBox.map(b => `<li>${b}</li>`).join('') : '';
+  const deptoOptions = Object.keys(guatemalaLocations).map(d => `<option value="${d}">${d}</option>`).join('');
 
   let reviewsHtml = '';
   const prodReviews = reviews.filter(r => r.productId === productId);
   if (prodReviews.length > 0) {
     prodReviews.forEach(review => {
       let starsHtml = '';
-      for (let i = 1; i <= 5; i++) { starsHtml += i <= review.rating ? '★' : '☆'; }
+      for (let i = 1; i <= 5; i++) { starsHtml += i <= review.rating ? '\u2605' : '\u2606'; }
       const initial = review.name.charAt(0).toUpperCase();
       reviewsHtml += `
-        <div style='margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--divider-color);'>
-          <div style='display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 0.5rem;'>
-            <div style='width: 40px; height: 40px; font-size: 1.1rem; background: var(--green-brand); color: white; display: flex; align-items: center; justify-content: center; border-radius: 50%;'>${initial}</div>
-            <div>
-              <div style='font-size: 1rem; font-weight: 600;'>${review.name}</div>
-              <div style='font-size: 0.9rem; color: var(--accent-gold); margin-top: 0.2rem;'>${starsHtml}</div>
+        <div class="pg-review-card">
+          <div class="pg-review-header">
+            <div class="pg-review-user">
+              <div class="pg-review-avatar">${initial}</div>
+              <div>
+                <div class="pg-review-name">${review.name}</div>
+                <div class="pg-review-stars">${starsHtml}</div>
+              </div>
             </div>
-            <div style='margin-left: auto; font-size: 0.85rem; color: #888;'>${review.date}</div>
+            <div class="pg-review-date">${review.date}</div>
           </div>
-          <p style='font-size: 1rem; color: #444; line-height: 1.5; margin-left: 3.5rem;'>"${review.comment}"</p>
+          <p class="pg-review-text">"${review.comment}"</p>
         </div>
       `;
     });
   } else {
-    reviewsHtml = '<p style="color: #666; font-size: 1rem;">Aún no hay reseñas para este producto.</p>';
+    reviewsHtml = '<p style="color:#888;font-size:0.95rem;">A\u00fan no hay rese\u00f1as para este producto. \u00a1S\u00e9 el primero!</p>';
   }
 
   container.innerHTML = `
-    <div class='shopify-product-grid'>
-      <div>
-        <div class='shopify-image-col' style='display: flex; flex-direction: column; gap: 1rem;'>
-          <div id="main-media-container" style="position: relative; width: 100%; aspect-ratio: 1/1; background: #f8f8f8; border-radius: 12px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-            <img id="main-product-image" src='${product.images[0]}' style='width: 100%; height: 100%; object-fit: contain; display: block;'>
-            <video id="main-product-video" src='${product.video}' style='width: 100%; height: 100%; object-fit: cover; display: none;' controls></video>
-          </div>
-          <div class="gallery-thumbnails" style="display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.5rem;">
-            ${product.images.map((img, i) => `
-              <div class="thumb-wrap ${i === 0 ? 'active' : ''}" style="width: 80px; height: 80px; flex-shrink: 0; border-radius: 8px; border: 2px solid ${i === 0 ? 'var(--green-brand)' : 'transparent'}; cursor: pointer; overflow: hidden;" onclick="changeMainMedia('image', '${img}', this)">
-                <img src='${img}' style='width: 100%; height: 100%; object-fit: cover;'>
-              </div>
-            `).join('')}
-            ${product.video ? `
-              <div class="thumb-wrap" style="width: 80px; height: 80px; flex-shrink: 0; border-radius: 8px; border: 2px solid transparent; cursor: pointer; overflow: hidden; position: relative; background: #000;" onclick="changeMainMedia('video', '${product.video}', this)">
-                <video src="${product.video}" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6;"></video>
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white;">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                </div>
-              </div>
-            ` : ''}
-          </div>
+    <div class="pg-breadcrumb">
+      <a href="productos.html">\u2190 Todos los productos</a>
+    </div>
+    <div class="pg-layout">
+      <div class="pg-gallery">
+        <div class="pg-main-img-wrap" id="main-media-container">
+          <img id="main-product-image" src="${product.images[0]}" alt="${product.name}" style="width:100%;height:100%;object-fit:contain;display:block;">
+          <video id="main-product-video" src="${product.video || ''}" style="width:100%;height:100%;object-fit:cover;display:none;" controls></video>
+        </div>
+        <div class="pg-thumbnails">
+          ${product.images.map((img, i) => `
+            <div class="pg-thumb ${i === 0 ? 'active' : ''}" onclick="changeMainMedia('image','${img}',this)">
+              <img src="${img}" alt="Vista ${i + 1}">
+            </div>
+          `).join('')}
+          ${product.video ? `
+            <div class="pg-thumb" onclick="changeMainMedia('video','${product.video}',this)" style="background:#111;display:flex;align-items:center;justify-content:center;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </div>
+          ` : ''}
         </div>
       </div>
-      <div class='shopify-info-col'>
-        <div class='shopify-card' style='padding: 2rem;'>
-          <h2 class='shopify-title'>${product.name}</h2>
-          <div class='shopify-price'>Q${product.price}</div>
-          <p class='shopify-text' style='margin-bottom: 2rem;'>${product.desc}</p>
-          <h3 class='shopify-section-title'>Evolución</h3>
-          <p class='shopify-text' style='margin-bottom: 2rem;'>${product.evolution || 'Un paso adelante en tecnología.'}</p>
-          <h3 class='shopify-section-title'>Características Principales</h3>
-          <ul class='shopify-text' style='list-style-type: disc; margin-left: 1.5rem; margin-bottom: 2rem;'>
-            ${featHtml}
-          </ul>
-          <h3 class='shopify-section-title'>¿Qué incluye la caja?</h3>
-          <ul class='shopify-text' style='list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem;'>
-            ${boxHtml}
-          </ul>
+      <div class="pg-info">
+        <div class="pg-header">
+          ${product.badge ? `<span class="pg-badge">${product.badge}</span>` : ''}
+          <h1 class="pg-title">${product.name}</h1>
+          <div class="pg-price">Q${product.price.toLocaleString()}</div>
+          <p class="pg-desc">${product.desc}</p>
         </div>
-        <div class='shopify-card order-form-container' style='background: var(--bg-crema); border: 2px solid var(--green-brand);'>
-          <h3 class='shopify-section-title' style='text-align: center; font-size: 1.5rem; margin-bottom: 1.5rem;'>¡Completa tu pedido ahora!</h3>
-          <form id='page-order-form' style='display: flex; flex-direction: column; gap: 1rem;'>
-            <input type='hidden' id='page-order-product-id' value='${productId}'>
-            <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;'>
-              <input type='text' id='page-order-fname' placeholder='Nombre' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
-              <input type='text' id='page-order-lname' placeholder='Apellido' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
+        <div class="pg-trust">
+          <div class="pg-trust-item"><span>\u2705</span><span>100% Original</span></div>
+          <div class="pg-trust-item"><span>\ud83d\ude9a</span><span>Env\u00edo en GT</span></div>
+          <div class="pg-trust-item"><span>\ud83d\udcac</span><span>Soporte WhatsApp</span></div>
+        </div>
+        <div class="pg-features-block">
+          <h3>\u2728 Caracter\u00edsticas principales</h3>
+          <ul class="pg-features-list">${featHtml}</ul>
+        </div>
+        <div class="pg-form-card">
+          <h3>\ud83d\udce6 Completa tu pedido</h3>
+          <form id="page-order-form" class="pg-form">
+            <input type="hidden" id="page-order-product-id" value="${productId}">
+            <div class="pg-form-row">
+              <input type="text" id="page-order-fname" placeholder="Nombre" required class="pg-input">
+              <input type="text" id="page-order-lname" placeholder="Apellido" required class="pg-input">
             </div>
-            <div style='display: grid; grid-template-columns: 1fr; gap: 1rem;'>
-              <input type='tel' id='page-order-phone' placeholder='Teléfono' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
-            </div>
-            <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;'>
-              <select id='page-order-depto' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
-                <option value='' disabled selected>Departamento</option>
-                ${Object.keys(guatemalaLocations).map(d => `<option value="${d}">${d}</option>`).join('')}
+            <input type="tel" id="page-order-phone" placeholder="Tel\u00e9fono" required class="pg-input" style="width:100%;">
+            <div class="pg-form-row">
+              <select id="page-order-depto" required class="pg-input">
+                <option value="" disabled selected>Departamento</option>
+                ${deptoOptions}
               </select>
-              <select id='page-order-muni' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
-                <option value='' disabled selected>Municipio</option>
+              <select id="page-order-muni" required class="pg-input">
+                <option value="" disabled selected>Municipio</option>
               </select>
             </div>
-            <div style='display: grid; grid-template-columns: 2fr 1fr; gap: 1rem;'>
-              <input type='text' id='page-order-address' placeholder='Dirección exacta' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
-              <input type='text' id='page-order-zone' placeholder='Zona' style='width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; font-family: inherit;' required>
+            <div class="pg-form-row pg-address-row">
+              <input type="text" id="page-order-address" placeholder="Direcci\u00f3n exacta" required class="pg-input">
+              <input type="text" id="page-order-zone" placeholder="Zona" required class="pg-input">
             </div>
-            <div style='display: flex; align-items: center; justify-content: space-between; margin-top: 0.5rem; padding: 1rem; background: white; border-radius: 8px;'>
-              <label style='font-weight: 600; color: var(--green-dark);'>Cantidad a ordenar:</label>
-              <input type='number' id='page-order-qty' min='1' value='1' style='width: 80px; padding: 0.8rem; border-radius: 8px; border: 1px solid #ddd; text-align: center; font-weight: 600; font-family: inherit;' required>
+            <div class="pg-qty-row">
+              <span>Cantidad:</span>
+              <div class="pg-qty-control">
+                <button type="button" class="pg-qty-btn" id="pg-qty-minus">\u2212</button>
+                <input type="number" id="page-order-qty" min="1" value="1" class="pg-qty-input" required>
+                <button type="button" class="pg-qty-btn" id="pg-qty-plus">+</button>
+              </div>
             </div>
-            <button type='submit' class='btn btn-primary' style='margin-top: 1.5rem; width: 100%; padding: 1.2rem; font-size: 1.2rem; font-weight: 700; border-radius: 12px; letter-spacing: 1px; display:flex; justify-content:center; gap: 10px; align-items:center;'>
-              Confirmar pedido por WhatsApp
+            <div class="pg-total">
+              <span>Total estimado:</span>
+              <span class="pg-total-price" id="pg-total-price">Q${product.price.toLocaleString()}</span>
+            </div>
+            <button type="submit" class="btn btn-primary pg-submit-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+              Confirmar por WhatsApp
             </button>
           </form>
         </div>
-        <div class='shopify-card' style='padding: 2rem;'>
-          <h3 class='shopify-section-title' style='font-size: 1.8rem; margin-bottom: 2rem;'>Reseñas de Clientes</h3>
-          <div id='page-reviews-list'>
-            ${reviewsHtml}
-          </div>
+        ${product.evolution ? `
+        <div class="pg-evolution">
+          <h3>\ud83d\udd2c Evoluci\u00f3n del producto</h3>
+          <p>${product.evolution}</p>
+        </div>` : ''}
+        ${product.inTheBox ? `
+        <div class="pg-inbox">
+          <h3>\ud83d\udce6 \u00bfQu\u00e9 incluye la caja?</h3>
+          <ul class="pg-inbox-list">${boxHtml}</ul>
+        </div>` : ''}
+        <div class="pg-reviews">
+          <h3>\u2b50 Rese\u00f1as de clientes</h3>
+          <div id="page-reviews-list">${reviewsHtml}</div>
         </div>
       </div>
     </div>
   `;
 
+  // Qty controls + live price update
+  const qtyInput = document.getElementById('page-order-qty');
+  const totalPriceEl = document.getElementById('pg-total-price');
+  const qtyMinus = document.getElementById('pg-qty-minus');
+  const qtyPlus = document.getElementById('pg-qty-plus');
+
+  function updateTotal() {
+    const qty = Math.max(1, parseInt(qtyInput.value) || 1);
+    qtyInput.value = qty;
+    if (totalPriceEl) totalPriceEl.textContent = `Q${(product.price * qty).toLocaleString()}`;
+  }
+
+  if (qtyMinus) qtyMinus.addEventListener('click', () => { qtyInput.value = Math.max(1, (parseInt(qtyInput.value) || 1) - 1); updateTotal(); });
+  if (qtyPlus) qtyPlus.addEventListener('click', () => { qtyInput.value = (parseInt(qtyInput.value) || 1) + 1; updateTotal(); });
+  if (qtyInput) qtyInput.addEventListener('input', updateTotal);
+
+  // Form submit
   const form = document.getElementById('page-order-form');
   if (form) {
     form.addEventListener('submit', (e) => {
@@ -1157,10 +1200,8 @@ function initProductPage() {
       const muni = document.getElementById('page-order-muni').value.trim();
       const address = document.getElementById('page-order-address').value.trim();
       const zone = document.getElementById('page-order-zone').value.trim();
-      
       const total = product.price * qty;
-      const message = `Nuevo pedido TCA4SHOP\n\nProducto: ${product.name}\nCantidad: ${qty} unidad(es)\n\nCliente:\n- Nombre: ${fname} ${lname}\n- Teléfono: ${phone}\n\nDirección de entrega:\n- Departamento: ${depto}\n- Municipio: ${muni}\n- Dirección: ${address}\n- Zona: ${zone}\n\nTotal estimado: Q${total.toLocaleString()}`;
-      
+      const message = `Nuevo pedido TCA4SHOP\n\nProducto: ${product.name}\nCantidad: ${qty} unidad(es)\n\nCliente:\n- Nombre: ${fname} ${lname}\n- Tel\u00e9fono: ${phone}\n\nDirecci\u00f3n de entrega:\n- Departamento: ${depto}\n- Municipio: ${muni}\n- Direcci\u00f3n: ${address}\n- Zona: ${zone}\n\nTotal estimado: Q${total.toLocaleString()}`;
       window.open(`https://wa.me/50254102510?text=${encodeURIComponent(message)}`, '_blank');
     });
   }
