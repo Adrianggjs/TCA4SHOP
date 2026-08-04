@@ -27,15 +27,15 @@ const productsDatabase = {
   "airpods-pro-3": {
     name: "AirPods Pro 3",
     price: 599,
-    desc: "Experimenta un sonido inmersivo y cancelación de ruido activa superior con los AirPods Pro 3.",
-    evolution: "Mejor cancelación de ruido, sonido espacial personalizado mejorado y mayor duración de batería.",
-    images: ["assets/img/airpods_pro3.webp"],
+    desc: "La nueva generación del sonido. Diseñados para ofrecer un audio espacial envolvente que te sitúa en el centro de la música, junto a un ajuste anatómico que se siente casi invisible.",
+    evolution: "Rediseño acústico para graves más profundos, batería extendida para todo el día y ecualización adaptativa que afina la música a tus oídos en tiempo real.",
+    images: ["assets/img/airpods_pro3_1.webp", "assets/img/airpods_pro3_2.webp", "assets/img/airpods_pro3_3.webp"],
     video: "",
     features: [
-      "Cancelación Activa de Ruido",
-      "Audio Espacial Personalizado",
-      "Estuche de carga MagSafe",
-      "Resistencia al agua y al sudor"
+      "Audio Espacial con seguimiento dinámico",
+      "Ecualización Adaptativa instantánea",
+      "Sensor de fuerza para control total",
+      "Resistencia al sudor y al agua (IPX4)"
     ],
     inTheBox: [
       "AirPods Pro 3",
@@ -47,39 +47,39 @@ const productsDatabase = {
   "airpods-pro-2": {
     name: "AirPods Pro 2",
     price: 399,
-    desc: "Rendimiento de audio asombroso con cancelación de ruido mejorada.",
-    evolution: "Doble cancelación de ruido que la generación anterior.",
+    desc: "Un rendimiento de audio asombroso. Con un procesador de siguiente nivel que impulsa una Cancelación Activa de Ruido hasta dos veces más potente, creando un santuario de silencio vayas donde vayas.",
+    evolution: "El doble de cancelación de ruido que la generación anterior, Modo Ambiente adaptable y nuevos controles táctiles para ajustar el volumen con solo deslizar el dedo.",
     images: ["assets/img/airpods_pro2.webp"],
     features: [
-      "Cancelación Activa de Ruido 2x",
-      "Modo Ambiente Adaptativo",
-      "Control táctil para volumen",
-      "Batería de larga duración"
+      "Cancelación Activa de Ruido (2x más potente)",
+      "Modo Ambiente Adaptable",
+      "Control táctil avanzado (Desliza para volumen)",
+      "Hasta 30 horas de autonomía con su estuche"
     ],
     inTheBox: [
       "AirPods Pro 2",
-      "Estuche de carga",
-      "Almohadillas de silicona (4 tamaños)",
-      "Cable de carga"
+      "Estuche de carga MagSafe",
+      "Almohadillas de silicona (XS, S, M, L)",
+      "Cable de carga USB-C"
     ]
   },
   "hk10-ultra-3": {
     name: "HK10 Ultra 3",
     price: 499,
-    desc: "El smartwatch más avanzado, diseñado para la aventura y la vida diaria.",
-    evolution: "Pantalla más brillante y procesador más rápido.",
+    desc: "Diseñado para superar los límites. El HK10 Ultra 3 combina una caja ultrarresistente de aleación aeroespacial con una pantalla enorme y brillante, listo para acompañarte en tus aventuras más extremas.",
+    evolution: "Procesador de doble núcleo ultrarrápido, sensores biométricos de última generación y una interfaz brutalmente fluida con animaciones a 60 cuadros por segundo.",
     images: ["assets/img/hk_10_ultra_3.webp"],
     features: [
-      "Pantalla AMOLED Brillante",
-      "Monitoreo avanzado de salud",
-      "Múltiples modos deportivos",
-      "Llamadas Bluetooth"
+      "Pantalla AMOLED Retina superbrillante",
+      "Caja de grado aeroespacial ultrarresistente",
+      "Seguimiento avanzado de salud y oxígeno",
+      "Llamadas Bluetooth de alta nitidez integradas"
     ],
     inTheBox: [
       "Smartwatch HK10 Ultra 3",
-      "Correa de silicona",
-      "Correa de tela (Regalo)",
-      "Cable de carga magnético",
+      "Correa Ocean de silicona deportiva",
+      "Correa Alpine (Regalo exclusivo)",
+      "Base de carga magnética rápida",
       "Manual de usuario"
     ]
   }
