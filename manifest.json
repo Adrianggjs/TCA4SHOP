@@ -1,0 +1,21 @@
+{
+  "name": "TCA4SHOP | Tecnología Premium",
+  "short_name": "TCA4SHOP",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FCF8EF",
+  "theme_color": "#081C15",
+  "description": "Compra AirPods Pro y smartwatches premium en Guatemala.",
+  "icons": [
+    {
+      "src": "assets/img/airpods_pro3.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/img/airpods_pro3.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

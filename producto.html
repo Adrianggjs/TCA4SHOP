@@ -17,6 +17,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css?v=1785794993465">
   <script src="js/script.js?v=1785794993465" defer></script>
+  <!-- PWA & SEO -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#081C15">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tca4shop.com/">
+  <meta property="og:image" content="https://tca4shop.com/assets/img/airpods_pro3.webp">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', 'YOUR_PIXEL_ID');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -197,14 +221,14 @@
           <div class="form-row qty-row">
             <label>Cantidad:</label>
             <div class="qty-selector">
-              <button type="button" class="qty-btn qty-minus">-</button>
+              <button type="button" class="qty-btn qty-minus" aria-label="Reducir cantidad">-</button>
               <input type="number" id="order-qty" value="1" min="1" required>
-              <button type="button" class="qty-btn qty-plus">+</button>
+              <button type="button" class="qty-btn qty-plus" aria-label="Aumentar cantidad">+</button>
             </div>
           </div>
           <input type="hidden" id="order-product-id">
           
-          <button type="submit" class="btn btn-primary btn-product">Confirmar pedido por WhatsApp</button>
+          <button type="submit" class="btn btn-primary btn-product btn-whatsapp" onclick="fbq('track', 'AddToCart');">Confirmar pedido por WhatsApp</button>
           <a href="https://www.instagram.com/tca4shop/" target="_blank" class="btn btn-secondary btn-product" style="margin-top: 1rem;">Quiero precio mayorista</a>
         </form>
         
@@ -273,5 +297,14 @@
     </div>
   </div>
 
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js');
+      });
+    }
+  </script>
 </body>
+
 </html>

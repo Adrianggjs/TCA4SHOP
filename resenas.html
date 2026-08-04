@@ -21,6 +21,12 @@
 
   <link rel="stylesheet" href="css/styles.css?v=1785794993466">
   <script src="js/script.js?v=1785794993466" defer></script>
+  <!-- PWA & SEO -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#081C15">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tca4shop.com/">
+  <meta property="og:image" content="https://tca4shop.com/assets/img/airpods_pro3.webp">
 </head>
 
 <body>
@@ -202,6 +208,15 @@
     </a>
   </div>
 
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js');
+      });
+    }
+  </script>
 </body>
+
 
 </html>
