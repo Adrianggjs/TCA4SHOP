@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tca4shop-cache-v1';
+const CACHE_NAME = 'tca4shop-cache-v2';
 const urlsToCache = [
   './',
   './index.html',
