@@ -23,6 +23,68 @@ const guatemalaLocations = {
     "Zacapa": ["Zacapa", "Estanzuela", "Río Hondo", "Gualán", "Teculután", "Usumatlán", "Cabañas", "San Diego", "La Unión", "Huité", "San Jorge"]
 };
 
+const productsDatabase = {
+  "airpods-pro-3": {
+    name: "AirPods Pro 3",
+    price: 599,
+    desc: "Experimenta un sonido inmersivo y cancelación de ruido activa superior con los AirPods Pro 3.",
+    evolution: "Mejor cancelación de ruido, sonido espacial personalizado mejorado y mayor duración de batería.",
+    images: ["assets/img/airpods_pro3.webp"],
+    video: "",
+    features: [
+      "Cancelación Activa de Ruido",
+      "Audio Espacial Personalizado",
+      "Estuche de carga MagSafe",
+      "Resistencia al agua y al sudor"
+    ],
+    inTheBox: [
+      "AirPods Pro 3",
+      "Estuche de carga MagSafe",
+      "Almohadillas de silicona (4 tamaños)",
+      "Cable de USB-C a Lightning"
+    ]
+  },
+  "airpods-pro-2": {
+    name: "AirPods Pro 2",
+    price: 399,
+    desc: "Rendimiento de audio asombroso con cancelación de ruido mejorada.",
+    evolution: "Doble cancelación de ruido que la generación anterior.",
+    images: ["assets/img/airpods_pro2.webp"],
+    features: [
+      "Cancelación Activa de Ruido 2x",
+      "Modo Ambiente Adaptativo",
+      "Control táctil para volumen",
+      "Batería de larga duración"
+    ],
+    inTheBox: [
+      "AirPods Pro 2",
+      "Estuche de carga",
+      "Almohadillas de silicona (4 tamaños)",
+      "Cable de carga"
+    ]
+  },
+  "hk10-ultra-3": {
+    name: "HK10 Ultra 3",
+    price: 499,
+    desc: "El smartwatch más avanzado, diseñado para la aventura y la vida diaria.",
+    evolution: "Pantalla más brillante y procesador más rápido.",
+    images: ["assets/img/hk_10_ultra_3.webp"],
+    features: [
+      "Pantalla AMOLED Brillante",
+      "Monitoreo avanzado de salud",
+      "Múltiples modos deportivos",
+      "Llamadas Bluetooth"
+    ],
+    inTheBox: [
+      "Smartwatch HK10 Ultra 3",
+      "Correa de silicona",
+      "Correa de tela (Regalo)",
+      "Cable de carga magnético",
+      "Manual de usuario"
+    ]
+  }
+};
+
 function populateMuniSelect(deptoVal, muniSelectId) {
   const muniSelect = document.getElementById(muniSelectId);
   if (!muniSelect) return;
@@ -609,13 +671,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const bar5 = document.getElementById('bar-fill-5');
     const pctLabel5 = document.getElementById('bar-pct-5');
     if (bar5 && pctLabel5) { bar5.style.width = `${pct5}%`; pctLabel5.textContent = `${pct5}%`; }
-    
+  } // Cierra updateReviewsSummary
+
+  const wModal = document.getElementById('wholesale-modal');
+  const wModalOverlay = document.getElementById('wholesale-modal-overlay');
+  const wPasswordInput = document.getElementById('wholesale-password');
+  const wErrorMsg = document.getElementById('wholesale-error');
+  const wLink = document.querySelector('.wholesale-link'); 
+  const wFooterLink = document.querySelector('.footer-wholesale-link');
+  const wModalCloseBtn = document.getElementById('wholesale-modal-close');
+  const wAuthForm = document.getElementById('wholesale-auth-form');
+  const wPortalSection = document.getElementById('wholesale-portal-section');
+  const wWaOrderBtn = document.getElementById('wholesale-wa-order-btn');
+  const WHOLESALE_PASSWORD_B64 = "VEVTVFBBU1M=";
+
+  function openWholesaleModal(e) {
+    if(e) e.preventDefault();
     if (wModal) wModal.classList.add('open');
     if (wModalOverlay) wModalOverlay.classList.add('active');
     if (wPasswordInput) wPasswordInput.value = '';
     if (wErrorMsg) wErrorMsg.style.display = 'none';
   }
-  
   function closeWholesaleModal() {
     if (wModal) wModal.classList.remove('open');
     if (wModalOverlay) wModalOverlay.classList.remove('active');
@@ -666,16 +742,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // 12. PRODUCT MODAL & ORDER
   // ==========================================
-      ],
-      inTheBox: [
-        "Smartwatch HK10 Ultra 3",
-        "Correa deportiva",
-        "Cable de carga magnético",
-        "Guía de inicio rápido"
-      ],
-      badge: "OFERTA"
-    }
-  };
 
   const productModal = document.getElementById('product-modal');
   const productModalOverlay = document.getElementById('product-modal-overlay');
