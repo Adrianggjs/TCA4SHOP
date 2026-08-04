@@ -1174,9 +1174,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (promoBanner && promoClose) {
     if (localStorage.getItem('promoBannerClosed') === 'true') {
       promoBanner.classList.add('hidden');
+      document.body.classList.add('promo-closed');
     }
     promoClose.addEventListener('click', () => {
       promoBanner.classList.add('hidden');
+      document.body.classList.add('promo-closed');
       localStorage.setItem('promoBannerClosed', 'true');
     });
   }
