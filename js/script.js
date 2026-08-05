@@ -1269,8 +1269,10 @@ function initProductPage() {
         fbq('track', 'Lead');
       }
 
-      // Redirigir en la misma pestaña para evitar bloqueadores de popups en Safari iOS
-      window.location.href = whatsappUrl;
+      // Pequeña pausa para asegurar que el evento de Meta llegue antes de cambiar de página
+      setTimeout(function() {
+        window.location.href = whatsappUrl;
+      }, 200);
     });
   }
 
