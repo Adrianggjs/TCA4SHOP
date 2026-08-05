@@ -27,9 +27,11 @@ const productsDatabase = {
   "airpods-pro-3": {
     name: "AirPods Pro 3",
     price: 599,
+    originalPrice: 1319,
+    shipping: "Envío GRATIS",
     desc: "La nueva generación del sonido. Diseñados para ofrecer un audio espacial envolvente que te sitúa en el centro de la música, junto a un ajuste anatómico que se siente casi invisible.",
     evolution: "Rediseño acústico para graves más profundos, batería extendida para todo el día y ecualización adaptativa que afina la música a tus oídos en tiempo real.",
-    images: ["assets/img/airpods_pro3.png", "assets/img/airpods_pro3_1.webp", "assets/img/airpods_pro3_2.webp", "assets/img/airpods_pro3_3.webp", "assets/img/airpods_pro3_4.webp", "assets/img/airpods_pro3_5.webp"],
+    images: ["assets/img/airpods_pro3_clean.png", "assets/img/airpods_pro3_1.webp", "assets/img/airpods_pro3_2.webp", "assets/img/airpods_pro3_3.webp", "assets/img/airpods_pro3_4.webp", "assets/img/airpods_pro3_5.webp"],
     video: "",
     features: [
       "Audio Espacial con seguimiento dinámico",
@@ -47,6 +49,8 @@ const productsDatabase = {
   "airpods-pro-2": {
     name: "AirPods Pro 2",
     price: 399,
+    originalPrice: 879,
+    shipping: "Envío GRATIS",
     desc: "Un rendimiento de audio asombroso. Con un procesador de siguiente nivel que impulsa una Cancelación Activa de Ruido hasta dos veces más potente, creando un santuario de silencio vayas donde vayas.",
     evolution: "El doble de cancelación de ruido que la generación anterior, Modo Ambiente adaptable y nuevos controles táctiles para ajustar el volumen con solo deslizar el dedo.",
     images: ["assets/img/airpods_pro2.png", "assets/img/pro2.jpeg", "assets/img/pro2_todo.png", "assets/img/estuche_airpods.png"],
@@ -66,6 +70,8 @@ const productsDatabase = {
   "hk10-ultra-3": {
     name: "HK10 Ultra 3",
     price: 499,
+    originalPrice: 1099,
+    shipping: "Envío GRATIS",
     desc: "Diseñado para superar los límites. El HK10 Ultra 3 combina una caja ultrarresistente de aleación aeroespacial con una pantalla enorme y brillante, listo para acompañarte en tus aventuras más extremas.",
     evolution: "Procesador de doble núcleo ultrarrápido, sensores biométricos de última generación y una interfaz brutalmente fluida con animaciones a 60 cuadros por segundo.",
     images: ["assets/img/hk_10_ultra_3.png", "assets/img/hk10_1.png", "assets/img/hk10_2.png", "assets/img/hk10_3.png", "assets/img/hk10_4.png", "assets/img/hk10_5.png"],
@@ -1099,14 +1105,20 @@ function initProductPage() {
       </div>
       <div class="pg-info">
         <div class="pg-header">
-          ${product.badge ? `<span class="pg-badge">${product.badge}</span>` : ''}
+          <div class="pg-badges-row">
+            ${product.originalPrice ? `<span class="pg-discount-badge">🔥 -55% OFERTA</span>` : ''}
+            ${product.shipping ? `<span class="pg-shipping-tag">🚚 ${product.shipping}</span>` : ''}
+          </div>
           <h1 class="pg-title">${product.name}</h1>
-          <div class="pg-price">Q${product.price.toLocaleString()}</div>
+          <div class="pg-price-block">
+            ${product.originalPrice ? `<div class="pg-price-original"><del>Q${product.originalPrice.toLocaleString()}</del></div>` : ''}
+            <div class="pg-price">Q${product.price.toLocaleString()}</div>
+          </div>
           <p class="pg-desc">${product.desc}</p>
         </div>
         <div class="pg-trust">
           <div class="pg-trust-item"><span>\u2705</span><span>100% Original</span></div>
-          <div class="pg-trust-item"><span>\ud83d\ude9a</span><span>Env\u00edo en GT</span></div>
+          <div class="pg-trust-item pg-trust-free-ship"><span>🚚</span><span>Envío GRATIS</span></div>
           <div class="pg-trust-item"><span>\ud83d\udcac</span><span>Soporte WhatsApp</span></div>
         </div>
         <div class="pg-features-block">
