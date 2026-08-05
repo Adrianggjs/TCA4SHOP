@@ -1111,16 +1111,38 @@ function initProductPage() {
             ${product.shipping ? `<span class="pg-shipping-tag">🚚 ${product.shipping}</span>` : ''}
           </div>
           <h1 class="pg-title">${product.name}</h1>
+          
+          <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 15px;">
+            <div style="background: #fff3cd; color: #856404; padding: 6px 10px; border-radius: 6px; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 6px; border: 1px solid #ffeeba;">
+              <span style="display: inline-block; width: 8px; height: 8px; background: #dc3545; border-radius: 50%; animation: pulse 1.5s infinite;"></span>
+              <span id="fake-viewers-${productId}">${Math.floor(Math.random() * 45) + 15}</span> personas viendo esto
+            </div>
+            ${!product.outOfStock ? `
+            <div style="background: #f8d7da; color: #721c24; padding: 6px 10px; border-radius: 6px; font-size: 0.85rem; font-weight: 700; border: 1px solid #f5c6cb; animation: pulse 2s infinite;">
+              ¡Últimas <span id="fake-stock-${productId}">${Math.floor(Math.random() * 5) + 2}</span> unidades disponibles!
+            </div>
+            ` : ''}
+          </div>
+
           <div class="pg-price-block">
             ${product.originalPrice ? `<div class="pg-price-original"><del>Q${product.originalPrice.toLocaleString()}</del></div>` : ''}
             <div class="pg-price">Q${product.price.toLocaleString()}</div>
           </div>
+          
+          ${product.originalPrice && !product.outOfStock ? `
+          <div style="background: #e74c3c; color: white; padding: 10px 14px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; margin-bottom: 20px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(231,76,60,0.3);">
+            <span>⏳ Oferta especial termina en:</span>
+            <span id="countdown-timer-${productId}" style="font-family: monospace; font-size: 1.1rem; letter-spacing: 1px;">02:15:30</span>
+          </div>
+          ` : ''}
+
           <p class="pg-desc">${product.desc}</p>
         </div>
-        <div class="pg-trust">
-          <div class="pg-trust-item"><span>\u2705</span><span>100% Original</span></div>
-          <div class="pg-trust-item pg-trust-free-ship"><span>🚚</span><span>Envío GRATIS</span></div>
-          <div class="pg-trust-item"><span>\ud83d\udcac</span><span>Soporte WhatsApp</span></div>
+        <div class="pg-trust" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px;">
+          <div class="pg-trust-item" style="background: #f0fdf4; border-color: #bbf7d0;"><span>✅</span><span>100% Original</span></div>
+          <div class="pg-trust-item pg-trust-free-ship" style="background: #f0fdf4; border-color: #bbf7d0;"><span>🚚</span><span>Envío GRATIS</span></div>
+          <div class="pg-trust-item" style="background: #eff6ff; border-color: #bfdbfe;"><span>🔒</span><span>Pago al Recibir</span></div>
+          <div class="pg-trust-item" style="background: #fffbeb; border-color: #fef08a;"><span>⭐</span><span>Garantía Premium</span></div>
         </div>
         <div class="pg-features-block">
           <h3>\u2728 Caracter\u00edsticas principales</h3>
@@ -1229,10 +1251,35 @@ function initProductPage() {
       const muni = document.getElementById('page-order-muni').value.trim();
       const address = document.getElementById('page-order-address').value.trim();
       const zone = document.getElementById('page-order-zone').value.trim();
-      const total = product.price * qty;
-      const message = `Nuevo pedido TCA4SHOP\n\nProducto: ${product.name}\nCantidad: ${qty} unidad(es)\n\nCliente:\n- Nombre: ${fname} ${lname}\n- Tel\u00e9fono: ${phone}\n\nDirecci\u00f3n de entrega:\n- Departamento: ${depto}\n- Municipio: ${muni}\n- Direcci\u00f3n: ${address}\n- Zona: ${zone}\n\nTotal estimado: Q${total.toLocaleString()}`;
-      window.open(`https://wa.me/50254102510?text=${encodeURIComponent(message)}`, '_blank');
+      
+      let message = `Hola TCA4SHOP. Quiero confirmar mi pedido desde la web:%0A%0A`;
+      message += `*Producto:* ${product.name}%0A`;
+      message += `*Cantidad:* ${qty}%0A`;
+      message += `*Precio Unitario:* Q${product.price.toLocaleString()}%0A`;
+      message += `*Total:* *Q${(product.price * qty).toLocaleString()}*%0A%0A`;
+      message += `*Mis datos:*%0A`;
+      message += `- Nombre: ${fname} ${lname}%0A`;
+      message += `- Teléfono: ${phone}%0A`;
+      message += `- Dirección: ${address}, Zona ${zone}, ${muni}, ${depto}%0A`;
+      
+      const whatsappUrl = `https://wa.me/50254102510?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
     });
+  }
+
+  // Activar timers psicológicos
+  const timerEl = document.getElementById(`countdown-timer-${productId}`);
+  if (timerEl) {
+    let time = 3600 * 2 + Math.floor(Math.random() * 30) * 60 + 30; // ~2 horas y algo
+    clearInterval(window.productTimerInterval);
+    window.productTimerInterval = setInterval(() => {
+      time--;
+      if(time < 0) time = 0;
+      const h = String(Math.floor(time/3600)).padStart(2,'0');
+      const m = String(Math.floor((time%3600)/60)).padStart(2,'0');
+      const s = String(time%60).padStart(2,'0');
+      timerEl.textContent = `${h}:${m}:${s}`;
+    }, 1000);
   }
 }
   initProductPage();
