@@ -29,7 +29,7 @@ const productsDatabase = {
     price: 599,
     desc: "La nueva generación del sonido. Diseñados para ofrecer un audio espacial envolvente que te sitúa en el centro de la música, junto a un ajuste anatómico que se siente casi invisible.",
     evolution: "Rediseño acústico para graves más profundos, batería extendida para todo el día y ecualización adaptativa que afina la música a tus oídos en tiempo real.",
-    images: ["assets/img/airpods_pro3_1.webp", "assets/img/airpods_pro3_2.webp", "assets/img/airpods_pro3_3.webp", "assets/img/airpods_pro3_4.webp", "assets/img/airpods_pro3_5.webp"],
+    images: ["assets/img/airpods_pro3.png", "assets/img/airpods_pro3_1.webp", "assets/img/airpods_pro3_2.webp", "assets/img/airpods_pro3_3.webp", "assets/img/airpods_pro3_4.webp", "assets/img/airpods_pro3_5.webp"],
     video: "",
     features: [
       "Audio Espacial con seguimiento dinámico",
@@ -49,7 +49,7 @@ const productsDatabase = {
     price: 399,
     desc: "Un rendimiento de audio asombroso. Con un procesador de siguiente nivel que impulsa una Cancelación Activa de Ruido hasta dos veces más potente, creando un santuario de silencio vayas donde vayas.",
     evolution: "El doble de cancelación de ruido que la generación anterior, Modo Ambiente adaptable y nuevos controles táctiles para ajustar el volumen con solo deslizar el dedo.",
-    images: ["assets/img/airpods_pro2.webp"],
+    images: ["assets/img/airpods_pro2.png", "assets/img/pro2.jpeg", "assets/img/pro2_todo.png", "assets/img/estuche_airpods.png"],
     features: [
       "Cancelación Activa de Ruido (2x más potente)",
       "Modo Ambiente Adaptable",
@@ -68,7 +68,7 @@ const productsDatabase = {
     price: 499,
     desc: "Diseñado para superar los límites. El HK10 Ultra 3 combina una caja ultrarresistente de aleación aeroespacial con una pantalla enorme y brillante, listo para acompañarte en tus aventuras más extremas.",
     evolution: "Procesador de doble núcleo ultrarrápido, sensores biométricos de última generación y una interfaz brutalmente fluida con animaciones a 60 cuadros por segundo.",
-    images: ["assets/img/hk_10_ultra_3.webp"],
+    images: ["assets/img/hk_10_ultra_3.png", "assets/img/hk10_1.png", "assets/img/hk10_2.png", "assets/img/hk10_3.png", "assets/img/hk10_4.png", "assets/img/hk10_5.png"],
     features: [
       "Pantalla AMOLED Retina superbrillante",
       "Caja de grado aeroespacial ultrarresistente",
