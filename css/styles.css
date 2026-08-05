@@ -715,16 +715,19 @@ body.promo-closed .navbar {
 
 .product-badge {
   position: absolute;
-  top: 2rem;
-  right: 2rem;
+  top: 1rem;
+  right: 1rem;
   background: rgba(82, 183, 136, 0.1);
   color: var(--green-brand);
-  font-size: 0.7rem;
-  font-weight: 700;
-  padding: 0.4rem 1rem;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.4rem 0.8rem;
   border-radius: 50px;
   z-index: 10;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
+  max-width: 80%;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .product-badge.accent {
