@@ -51,6 +51,7 @@ const productsDatabase = {
     price: 399,
     originalPrice: 879,
     shipping: "Envío GRATIS",
+    outOfStock: true,
     desc: "Un rendimiento de audio asombroso. Con un procesador de siguiente nivel que impulsa una Cancelación Activa de Ruido hasta dos veces más potente, creando un santuario de silencio vayas donde vayas.",
     evolution: "El doble de cancelación de ruido que la generación anterior, Modo Ambiente adaptable y nuevos controles táctiles para ajustar el volumen con solo deslizar el dedo.",
     images: ["assets/img/airpods_pro2.png", "assets/img/pro2.jpeg", "assets/img/pro2_todo.png", "assets/img/estuche_airpods.png"],
@@ -1126,6 +1127,13 @@ function initProductPage() {
           <ul class="pg-features-list">${featHtml}</ul>
         </div>
         <div class="pg-form-card">
+          ${product.outOfStock ? `
+            <div style="text-align: center; padding: 2rem 1rem;">
+              <div style="font-size: 3rem; margin-bottom: 1rem;">❌</div>
+              <h3 style="color: #dc3545; margin-bottom: 0.5rem; font-size: 1.5rem;">Producto Agotado</h3>
+              <p style="color: var(--text-muted); font-size: 1rem;">Lo sentimos, este producto se encuentra temporalmente sin existencias.</p>
+            </div>
+          ` : `
           <h3>\ud83d\udce6 Completa tu pedido</h3>
           <form id="page-order-form" class="pg-form">
             <input type="hidden" id="page-order-product-id" value="${productId}">
@@ -1164,6 +1172,7 @@ function initProductPage() {
               Confirmar por WhatsApp
             </button>
           </form>
+          `}
         </div>
         ${product.evolution ? `
         <div class="pg-evolution">
