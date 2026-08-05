@@ -1263,6 +1263,12 @@ function initProductPage() {
       message += `- Dirección: ${address}, Zona ${zone}, ${muni}, ${depto}%0A`;
       
       const whatsappUrl = `https://wa.me/50254102510?text=${encodeURIComponent(message)}`;
+      
+      // Disparar evento Lead de Meta Ads
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead');
+      }
+
       window.open(whatsappUrl, '_blank');
     });
   }
