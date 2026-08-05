@@ -1128,11 +1128,13 @@ function initProductPage() {
         </div>
         <div class="pg-form-card">
           ${product.outOfStock ? `
-            <div style="text-align: center; padding: 2rem 1rem;">
-              <div style="font-size: 3rem; margin-bottom: 1rem;">❌</div>
-              <h3 style="color: #dc3545; margin-bottom: 0.5rem; font-size: 1.5rem;">Producto Agotado</h3>
-              <p style="color: var(--text-muted); font-size: 1rem;">Lo sentimos, este producto se encuentra temporalmente sin existencias.</p>
+            <div style="text-align: center; padding: 2rem 1rem; border: 2px dashed #e74c3c; border-radius: 12px; background-color: #fff5f5; margin-top: 1rem;">
+              <div style="font-size: 3rem; margin-bottom: 0.5rem; animation: pulse 2s infinite;">🚨</div>
+              <h3 style="color: #c0392b; font-weight: 800; font-size: 1.8rem; margin-bottom: 0.5rem; text-transform: uppercase;">¡Agotado por Alta Demanda!</h3>
+              <p style="color: #333; font-size: 1.1rem; margin-bottom: 1rem; font-weight: 600;">Esta increíble oferta (de <del>Q${product.originalPrice}</del> a Q${product.price}) se terminó en tiempo récord.</p>
+              <div style="background: #e74c3c; color: white; padding: 0.8rem; border-radius: 8px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: 0.3s;" onmouseover="this.style.background='#c0392b'" onmouseout="this.style.background='#e74c3c'" onclick="window.location.href='productos.html'">👉 Ver otros productos antes de que se agoten</div>
             </div>
+
           ` : `
           <h3>\ud83d\udce6 Completa tu pedido</h3>
           <form id="page-order-form" class="pg-form">
@@ -1163,9 +1165,15 @@ function initProductPage() {
                 <button type="button" class="pg-qty-btn" id="pg-qty-plus">+</button>
               </div>
             </div>
-            <div class="pg-total">
-              <span>Total estimado:</span>
-              <span class="pg-total-price" id="pg-total-price">Q${product.price.toLocaleString()}</span>
+            <div class="pg-total" style="display: flex; flex-direction: column; align-items: flex-end;">
+              <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+                <span>Total estimado:</span>
+                <div style="text-align: right;">
+                  ${product.originalPrice ? `<del style="color: #999; font-size: 0.85em; margin-right: 8px;">Q${product.originalPrice.toLocaleString()}</del>` : ''}
+                  <span class="pg-total-price" id="pg-total-price">Q${product.price.toLocaleString()}</span>
+                </div>
+              </div>
+              ${product.originalPrice ? `<div style="color: #e74c3c; font-size: 0.85rem; font-weight: 700; margin-top: 4px; animation: pulse 2s infinite;">🔥 ¡Aprovecha antes que suba de precio!</div>` : ''}
             </div>
             <button type="submit" class="btn btn-primary pg-submit-btn">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
