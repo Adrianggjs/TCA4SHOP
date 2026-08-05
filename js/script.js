@@ -1269,7 +1269,8 @@ function initProductPage() {
         fbq('track', 'Lead');
       }
 
-      window.open(whatsappUrl, '_blank');
+      // Redirigir en la misma pestaña para evitar bloqueadores de popups en Safari iOS
+      window.location.href = whatsappUrl;
     });
   }
 
